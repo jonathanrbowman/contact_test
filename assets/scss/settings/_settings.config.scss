@@ -1,0 +1,19 @@
+///* ========================================================================
+//   #CONFIG
+//   ======================================================================== */
+
+// A map of global config settings. Define any project-level configuration,
+// feature switches, etc. in here.
+
+$inuit-config: (
+  env: dev,
+  healthcheck: false,
+  debug: true,
+);
+
+@function inuit-config($key) {
+  @return map-get($inuit-config, $key);
+}
+
+$color_blue: #0984e3;
+$color_text: #2d3436;
