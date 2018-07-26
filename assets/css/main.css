@@ -83,6 +83,9 @@ body, html {
 * {
   box-sizing: border-box; }
 
+.app-main {
+  padding: 1rem; }
+
 /* ==========================================================================
    #BOX-SIZING
    ========================================================================== */
@@ -1447,6 +1450,17 @@ table {
   .o-pack--reverse > .o-pack__item {
     direction: ltr; }
 
+.o-heading--thin {
+  font-weight: 300; }
+
+.o-input__field {
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid #aaaaaa; }
+  .o-input__field:focus {
+    border-bottom: 2px solid #0984e3; }
+
 /* ==========================================================================
    #CLEARFIX
    ========================================================================== */
@@ -1457,6 +1471,12 @@ table {
   content: "" !important;
   display: block !important;
   clear: both !important; }
+
+.u-italicize {
+  font-style: italic; }
+
+.u-uppercase {
+  text-transform: uppercase; }
 
 /* ==========================================================================
    #WIDTHS

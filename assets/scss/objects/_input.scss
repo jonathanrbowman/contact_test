@@ -1,3 +1,14 @@
 .o-input {
-  
+
+}
+
+.o-input__field {
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid $color_gray;
+
+  &:focus {
+    border-bottom: 2px solid $color_blue;
+  }
 }
