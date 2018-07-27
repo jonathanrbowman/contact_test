@@ -124,7 +124,7 @@ $(function() {
 
   $("body").on("click.selectContact", ".js-contact-row", function(event) {
     if (contact_app.api.commandDown) {
-      $(this).addClass("is-selected");
+      $(this).toggleClass("is-selected");
     }
 
     if (contact_app.api.shiftDown) {

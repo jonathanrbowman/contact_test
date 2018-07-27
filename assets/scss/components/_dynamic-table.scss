@@ -40,6 +40,11 @@
     background-color: $color_blue_light;
     transform: scale(1.02);
   }
+
+  &.is-selected {
+    background-color: $color_blue;
+    color: $color_white;
+  }
 }
 
 .c-dynamic-table__body__row__item {
