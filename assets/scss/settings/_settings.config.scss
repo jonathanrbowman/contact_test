@@ -11,10 +11,30 @@ $inuit-config: (
   debug: true,
 );
 
+$mq-breakpoints: (
+  mobile:  320px,
+  tablet:  740px,
+  desktop: 980px,
+  wide:    1300px
+);
+
 @function inuit-config($key) {
   @return map-get($inuit-config, $key);
 }
 
 $color_blue: #0984e3;
+$color_blue_light: lighten($color_blue, 30);
+$color_gray_lightest: #f7f7f7;
+$color_gray_lighter: #f1f1f1;
+$color_gray_light: #e6e6e6;
 $color_gray: #aaaaaa;
+$color_gray_dark: #777777;
+$color_black: #000000;
 $color_text: #2d3436;
+
+@mixin transition-curve() {
+  -webkit-transition: all .6s cubic-bezier(0.075, 0.820, 0.165, 1.000);
+     -moz-transition: all .6s cubic-bezier(0.075, 0.820, 0.165, 1.000);
+       -o-transition: all .6s cubic-bezier(0.075, 0.820, 0.165, 1.000);
+          transition: all .6s cubic-bezier(0.075, 0.820, 0.165, 1.000); /* easeOutCirc */
+}

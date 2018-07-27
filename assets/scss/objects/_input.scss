@@ -1,14 +1,29 @@
 .o-input {
+  width: 100%;
+  max-width: 600px;
+  font-size: 0;
 
+  .o-icon {
+    vertical-align: middle;
+  }
 }
 
 .o-input__field {
-  -webkit-appearance: none;
+  @include transition-curve();
+  width: 100%;
   outline: 0;
   border: 0;
-  border-bottom: 2px solid $color_gray;
+  border-bottom: 1px solid $color_gray;
+  -webkit-appearance: none;
+  font-size: 1rem;
+  padding: .25rem;
+  position: relative;
 
   &:focus {
-    border-bottom: 2px solid $color_blue;
+    border-color: $color_blue;
+  }
+
+  .o-input--has-icon & {
+    width: calc(100% - 2rem);
   }
 }

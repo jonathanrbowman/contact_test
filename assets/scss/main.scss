@@ -131,6 +131,8 @@
 @import "../../node_modules/inuitcss/objects/objects.pack";
 @import "../../assets/scss/objects/heading";
 @import "../../assets/scss/objects/input";
+@import "../../assets/scss/objects/icon";
+@import "../../assets/scss/objects/sort";
 
 
 
@@ -139,7 +141,7 @@
 // COMPONENTS
 //
 // Build and include your project’s UI components here.
-
+@import "../../assets/scss/components/dynamic-table";
 
 
 
