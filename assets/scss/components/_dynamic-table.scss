@@ -1,5 +1,9 @@
 .c-dynamic-table {
-  max-width: 700px;
+  height: calc(100% - 140px);
+
+  @include mq($from: 'tablet') {
+    height: calc(100% - 149px);
+  }
 }
 
 .c-dynamic-table__headings {
@@ -20,9 +24,8 @@
 }
 
 .c-dynamic-table__body {
-  height: 400px;
+  height: 100%;
   overflow-y: auto;
-  padding: 0 .5rem;
 }
 
 .c-dynamic-table__body__row {
@@ -31,6 +34,7 @@
   padding: .5rem .25rem;
   background-color: $color_gray_lighter;
   cursor: pointer;
+  transform: scale(.98);
 
   &:nth-child(even) {
     background-color: $color_gray_lightest;
@@ -38,12 +42,16 @@
 
   &:hover, &.is-selected {
     background-color: $color_blue_light;
-    transform: scale(1.02);
+    transform: scale(1);
   }
 
-  &.is-selected {
+  &:focus, &:active, &.is-selected {
     background-color: $color_blue;
     color: $color_white;
+  }
+
+  &.is-hidden {
+    display: none;
   }
 }
 

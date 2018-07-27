@@ -1,0 +1,42 @@
+.c-modal {
+  @include transition-curve();
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba($color_blue_dark, .9);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+
+  &.is-active {
+    pointer-events: all;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.c-modal__inner {
+  @include transition-curve();
+  width: 90%;
+  max-width: 640px;
+  max-height: 90%;
+  overflow-y: auto;
+  background-color: $color_white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  padding: .5rem;
+  box-shadow: 0 2px 8px 1px $color_black;
+
+  .c-modal.is-active & {
+    transform: translate(-50%, -50%);
+  }
+
+  @include mq($from: 'tablet') {
+    padding: 1.5rem;
+  }
+}

@@ -15,7 +15,7 @@ contact_app.api.sort = "last_name";
 contact_app.api.order = false;
 contact_app.api.commandDown = false;
 contact_app.api.shiftDown = false;
-contact_app.api.rowTemplate = "\n  <div class=\"c-dynamic-table__body__row  js-contact-row\">\n    <h5 class=\"c-dynamic-table__body__row__item\">___FIRST_NAME___ ___LAST_NAME___</h5>\n    <h5 class=\"c-dynamic-table__body__row__item\">___COMPANY_NAME___</h5>\n  </div>\n";
+contact_app.api.rowTemplate = "\n  <div class=\"c-dynamic-table__body__row  js-contact-row\" data-row-id=\"___ID___\">\n    <h5 class=\"c-dynamic-table__body__row__item\">___FIRST_NAME___ ___LAST_NAME___</h5>\n    <h5 class=\"c-dynamic-table__body__row__item\">___COMPANY_NAME___</h5>\n  </div>\n";
 
 // when you only have the quantity of entries we're dealing with, I'd rather just load them into memory instead of making more network requests
 contact_app.api.list = function (_ref) {
@@ -64,10 +64,19 @@ contact_app.api.render = function (contacts) {
 
   if (contacts.length > 0) {
     $.each(contacts, function () {
-      $(".c-dynamic-table__body").append(contact_app.api.rowTemplate.replace("___FIRST_NAME___", this.first_name).replace("___LAST_NAME___", this.last_name).replace("___COMPANY_NAME___", this.company_name));
+      $(".c-dynamic-table__body").append(contact_app.api.rowTemplate.replace("___FIRST_NAME___", this.first_name).replace("___LAST_NAME___", this.last_name).replace("___COMPANY_NAME___", this.company_name).replace("___ID___", this.id));
     });
   } else {
-    $(".c-dynamic-table__body").append("<div class='o-layout__item'><h5 class='o-heading  o-heading--thin  u-italicize'>No results found.</h5></div>");
+    $(".c-dynamic-table__body").append("<h5 class='o-heading  o-heading--thin  u-italicize'>No results found.</h5>");
+  }
+};
+
+contact_app.api.filter = function (contacts) {
+  $(".c-dynamic-table__body__row").addClass("is-hidden");
+  if (contacts.length > 0) {
+    $.each(contacts, function () {
+      $(".c-dynamic-table__body__row[data-row-id='" + this.id + "']").removeClass("is-hidden");
+    });
   }
 };
 
@@ -92,9 +101,9 @@ contact_app.api.search = function () {
     });
 
     contact_app.api.searchResults = (_ref2 = []).concat.apply(_ref2, _toConsumableArray(contact_app.api.searchResults));
-    contact_app.api.render(contact_app.api.searchResults);
+    contact_app.api.filter(contact_app.api.searchResults);
   } else {
-    contact_app.api.render(contact_app.api.contacts);
+    contact_app.api.filter(contact_app.api.contacts);
   }
 };
 
@@ -114,6 +123,22 @@ contact_app.api.sortContacts = function (contacts, field) {
   });
 
   contact_app.api.render(contacts);
+};
+
+contact_app.api.searchObject = function (contactID, array) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].id === contactID) {
+      return array[i];
+    }
+  }
+};
+
+contact_app.api.renderContact = function (contactID) {
+  var contact = contact_app.api.searchObject(contactID, contact_app.api.contacts);
+  Object.keys(contact).forEach(function (key) {
+    console.log(key);
+    $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
+  });
 };
 
 // init with loading the contacts into memory
@@ -143,17 +168,23 @@ $(function () {
   $("body").on("click.selectContact", ".js-contact-row", function (event) {
     if (contact_app.api.commandDown) {
       $(this).toggleClass("is-selected");
-    }
-
-    if (contact_app.api.shiftDown) {
-      // need to add this logic
-      // $(this).addClass("is-selected");
+    } else {
+      $(".c-modal").addClass("is-active");
+      contact_app.api.renderContact($(this).data("row-id"));
     }
   });
 
   $("body").on("click.selectClear", function (event) {
-    if (!contact_app.api.commandDown && !contact_app.api.shiftDown) {
+    if (!contact_app.api.commandDown && !contact_app.api.shiftDown && $(event.target).closest(".o-input").length <= 0) {
       $(".js-contact-row").removeClass("is-selected");
+    }
+  });
+
+  $("body").on("click.closeModal", function (event) {
+    event.stopPropagation();
+    if ($(event.target).closest(".c-modal").length > 0) {
+      $(".c-modal").removeClass("is-active");
+      $(".js-contact-form").find(".o-input__field").html("");
     }
   });
 

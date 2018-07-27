@@ -5,3 +5,12 @@
 .o-heading--thin {
   font-weight: 300;
 }
+
+
+.o-heading--page-title {
+  font-size: 1.5rem;
+
+  @include mq($from: 'tablet') {
+    font-size: 2rem;
+  }
+}

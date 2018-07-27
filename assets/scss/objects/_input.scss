@@ -1,11 +1,16 @@
 .o-input {
   width: 100%;
-  max-width: 600px;
   font-size: 0;
+  margin-bottom: 1rem;
 
   .o-icon {
     vertical-align: middle;
   }
+}
+
+.o-input__label {
+  font-size: .85rem;
+  color: $color_gray;
 }
 
 .o-input__field {
@@ -18,6 +23,7 @@
   font-size: 1rem;
   padding: .25rem;
   position: relative;
+  height: 33px;
 
   &:focus {
     border-color: $color_blue;
@@ -25,5 +31,12 @@
 
   .o-input--has-icon & {
     width: calc(100% - 2rem);
+  }
+
+  &[contenteditable]:empty:before {
+    content: attr(placeholder);
+    display: block;
+    font-style: italic;
+    color: $color_gray;
   }
 }
