@@ -11,6 +11,7 @@ contact_app.api.sort = "last_name";
 contact_app.api.order = false;
 contact_app.api.commandDown = false;
 contact_app.api.shiftDown = false;
+contact_app.api.isScrolling = false;
 contact_app.api.rowTemplate = `
   <div class="c-dynamic-table__body__row  js-contact-row" data-row-id="___ID___">
     <h5 class="c-dynamic-table__body__row__item">___FIRST_NAME___ ___LAST_NAME___</h5>
@@ -147,11 +148,13 @@ $(function() {
   });
 
   $("body").on("touchend.selectContact click.selectContact", ".js-contact-row", function(event) {
-    if (contact_app.api.commandDown) {
-      $(this).toggleClass("is-selected");
-    } else {
-      $(".c-modal").addClass("is-active");
-      contact_app.api.renderContact($(this).data("row-id"));
+    if (!contact_app.api.isScrolling) {
+      if (contact_app.api.commandDown) {
+        $(this).toggleClass("is-selected");
+      } else {
+        $(".c-modal").addClass("is-active");
+        contact_app.api.renderContact($(this).data("row-id"));
+      }
     }
   });
 
@@ -195,6 +198,14 @@ $(function() {
 
   $(".js-contact-edit").on("click", function() {
     $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
+  });
+
+  $(document).on("touchstart", function() {
+    contact_app.api.isScrolling = false;
+  });
+
+  $(document).on("touchmove", function() {
+    contact_app.api.isScrolling = true;
   });
 
 });
