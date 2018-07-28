@@ -7,8 +7,6 @@
 
 html {
   touch-action: manipulation;
-  position: fixed;
-  overflow: hidden;
 }
 
 body, html {
@@ -29,9 +27,7 @@ body, html {
 .app-main {
   width: 100%;
   height: 100%;
-  // max-width: 800px;
-  // position: relative;
-  // margin: 0 auto;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  max-width: 800px;
+  position: relative;
+  margin: 0 auto;
 }

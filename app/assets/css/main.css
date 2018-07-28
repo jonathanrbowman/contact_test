@@ -72,9 +72,7 @@
  * Hide.................Helper classes to hide content
  */
 html {
-  touch-action: manipulation;
-  position: fixed;
-  overflow: hidden; }
+  touch-action: manipulation; }
 
 body, html {
   width: 100%;
@@ -92,8 +90,9 @@ body, html {
 .app-main {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch; }
+  max-width: 800px;
+  position: relative;
+  margin: 0 auto; }
 
 /* ==========================================================================
    #BOX-SIZING
