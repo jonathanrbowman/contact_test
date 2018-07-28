@@ -164,7 +164,7 @@ $(function() {
     }
   });
 
-  $("body").on("click.closeModal", function(event) {
+  $("body").on("touchend.closeModal click.closeModal", function(event) {
     event.stopPropagation();
     if ($(event.target).hasClass("c-modal")) {
       $(".c-modal").removeClass("is-active");
