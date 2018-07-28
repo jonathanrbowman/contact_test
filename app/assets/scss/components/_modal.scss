@@ -31,6 +31,7 @@
   transform: translate(-50%, -45%);
   padding: .5rem;
   box-shadow: 0 2px 8px 1px $color_black;
+  -webkit-overflow-scrolling: touch;
 
   .c-modal.is-active & {
     transform: translate(-50%, -50%);

@@ -81,7 +81,8 @@ body, html {
   color: #2d3436; }
 
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 .app-main {
   width: 100%;
@@ -1486,6 +1487,7 @@ table {
   border: 0;
   border-bottom: 1px solid #aaaaaa;
   -webkit-appearance: none;
+  border-radius: 0;
   font-size: 1rem;
   padding: .25rem;
   position: relative;
@@ -1548,7 +1550,8 @@ table {
 
 .c-dynamic-table__body {
   height: 100%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; }
 
 .c-dynamic-table__body__row {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -1625,7 +1628,8 @@ table {
   left: 50%;
   transform: translate(-50%, -45%);
   padding: .5rem;
-  box-shadow: 0 2px 8px 1px #000000; }
+  box-shadow: 0 2px 8px 1px #000000;
+  -webkit-overflow-scrolling: touch; }
   .c-modal.is-active .c-modal__inner {
     transform: translate(-50%, -50%); }
   @media (min-width: 46.25em) {

@@ -143,6 +143,7 @@ contact_app.api.renderContact = function (contactID) {
 $(window).on("load", contact_app.api.list);
 
 $(function () {
+  document.addEventListener("touchstart", function () {}, true);
 
   $(".js-contact-search").on("keyup", function (event) {
     var searchValue = $(this).val();
