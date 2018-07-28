@@ -123,9 +123,9 @@ contact_app.api.renderContact = function(contactID) {
 
 // init with loading the contacts into memory
 $(window).on("load", contact_app.api.list);
+document.addEventListener("touchstart", function() {}, true);
 
 $(function() {
-  document.addEventListener("touchstart", function() {}, true);
 
   $(".js-contact-search").on("keyup", function(event) {
     var searchValue = $(this).val();
@@ -146,7 +146,7 @@ $(function() {
     contact_app.api.sortContacts(contacts, sortField);
   });
 
-  $("body").on("click.selectContact", ".js-contact-row", function(event) {
+  $("body").on("touchend.selectContact click.selectContact", ".js-contact-row", function(event) {
     if (contact_app.api.commandDown) {
       $(this).toggleClass("is-selected");
     } else {
