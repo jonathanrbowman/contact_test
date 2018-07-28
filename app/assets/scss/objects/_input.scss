@@ -2,6 +2,7 @@
   width: 100%;
   font-size: 0;
   margin-bottom: 1rem;
+  display: inline-block;
 
   .o-icon {
     vertical-align: middle;
@@ -23,7 +24,7 @@
   font-size: 1rem;
   padding: .25rem;
   position: relative;
-  height: 33px;
+  min-height: 33px;
 
   &:focus {
     border-color: $color_blue;
@@ -38,5 +39,10 @@
     display: block;
     font-style: italic;
     color: $color_gray;
+  }
+
+  &[contenteditable="false"] {
+    border-color: $color_gray_lightest;
+    border-style: dashed;
   }
 }

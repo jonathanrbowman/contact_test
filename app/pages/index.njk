@@ -1,0 +1,64 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  {% macro formInput(label, field, customClasses) %}
+    <div class="o-input  {{customClasses}}">
+      <label class="o-input__label">{{label}}</label>
+      <div class="o-input__field" data-form-field="{{field}}" contenteditable="false" placeholder="{{label}}"></div>
+    </div>
+  {% endmacro %}
+
+  <div class="c-app-header">
+    <h1 class="o-heading  o-heading--page-title">Your Contacts</h1>
+
+    <div class="o-input  o-input--has-icon">
+      <div class="o-icon  o-icon--search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
+      <input type="text" class="o-input__field  js-contact-search" placeholder="Search Contacts">
+    </div>
+  </div>
+
+  <div class="c-dynamic-table">
+    <div class="c-dynamic-table__headings">
+      <h5 class="c-dynamic-table__headings__heading  o-heading  u-uppercase">Name</h5>
+      <h5 class="c-dynamic-table__headings__heading  o-heading  u-uppercase">Company</h5>
+    </div>
+
+    <div class="c-dynamic-table__body"></div>
+  </div>
+
+  <div class="c-modal">
+    <div class="c-modal__inner">
+      <h3>View Contact</h3>
+      <form class="js-contact-form" method="post">
+        <div class="o-button-group">
+          <button type="button" class="o-button  o-button--update  js-contact-edit">Edit</button>
+          <button type="button" class="o-button  o-button--destroy  js-contact-destroy">Delete</button>
+        </div>
+        <div class="o-layout">
+          <div class="o-layout__item  u-1/1  u-1/2@mobile">
+            {{ formInput("First Name", "first_name")}}
+          </div>
+          <div class="o-layout__item  u-1/1  u-1/2@mobile">
+            {{ formInput("Last Name", "last_name")}}
+          </div>
+        </div>
+        {{ formInput("Company", "company_name")}}
+        {{ formInput("Phone", "phone")}}
+        {{ formInput("Email", "email")}}
+        {{ formInput("Website", "url")}}
+        {{ formInput("Address", "address")}}
+        {{ formInput("City", "city")}}
+        <div class="o-layout">
+          <div class="o-layout__item  u-1/1  u-1/2@mobile">
+            {{ formInput("State", "state")}}
+          </div>
+          <div class="o-layout__item  u-1/1  u-1/2@mobile">
+            {{ formInput("Zip", "zip")}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

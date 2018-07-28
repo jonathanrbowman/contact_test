@@ -45,7 +45,6 @@ contact_app.api.list = function (_ref) {
       request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
     },
     success: function success(data) {
-
       $.each(data.data, function () {
         contact_app.api.contacts.push(this);
       });
@@ -136,7 +135,6 @@ contact_app.api.searchObject = function (contactID, array) {
 contact_app.api.renderContact = function (contactID) {
   var contact = contact_app.api.searchObject(contactID, contact_app.api.contacts);
   Object.keys(contact).forEach(function (key) {
-    console.log(key);
     $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
   });
 };
@@ -182,9 +180,11 @@ $(function () {
 
   $("body").on("click.closeModal", function (event) {
     event.stopPropagation();
-    if ($(event.target).closest(".c-modal").length > 0) {
+    if ($(event.target).hasClass("c-modal")) {
       $(".c-modal").removeClass("is-active");
       $(".js-contact-form").find(".o-input__field").html("");
+      $(".c-modal__inner").scrollTop(0);
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
     }
   });
 
@@ -208,5 +208,9 @@ $(function () {
         contact_app.api.shiftDown = false;
         break;
     }
+  });
+
+  $(".js-contact-edit").on("click", function () {
+    $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
   });
 });

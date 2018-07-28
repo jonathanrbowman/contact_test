@@ -1,8 +1,8 @@
 .c-dynamic-table {
-  height: calc(100% - 140px);
+  height: calc(100% - 159px);
 
   @include mq($from: 'tablet') {
-    height: calc(100% - 149px);
+    height: calc(100% - 168px);
   }
 }
 

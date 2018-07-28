@@ -9,50 +9,9 @@
   <body>
 
     <div class="app-main">
-      <div class="c-app-header">
-        <h1 class="o-heading  o-heading--page-title">Your Contacts</h1>
-
-        <div class="o-input  o-input--has-icon">
-          <div class="o-icon  o-icon--search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
-          <input type="text" class="o-input__field  js-contact-search" placeholder="Search Contacts">
-        </div>
-      </div>
-
-      <div class="c-dynamic-table">
-        <div class="c-dynamic-table__headings">
-          <h5 class="c-dynamic-table__headings__heading  o-heading  u-uppercase">Name</h5>
-          <h5 class="c-dynamic-table__headings__heading  o-heading  u-uppercase">Company</h5>
-        </div>
-
-        <div class="c-dynamic-table__body"></div>
-      </div>
+      {% block content %}
+      {% endblock %}
     </div>
-
-    <div class="c-modal">
-      <div class="c-modal__inner">
-        <form class="js-contact-form" method="post">
-          <div class="o-input">
-            <label class="o-input__label">First Name</label>
-            <div class="o-input__field" data-form-field="first_name" contenteditable="false" placeholder="First Name"></div>
-          </div>
-          <div class="o-input">
-            <label class="o-input__label">Last Name</label>
-            <div class="o-input__field" data-form-field="last_name" contenteditable="false" placeholder="Last Name"></div>
-          </div>
-          <div class="o-input">
-            <label class="o-input__label">Company</label>
-            <div class="o-input__field" data-form-field="company_name" contenteditable="false" placeholder="Company"></div>
-          </div>
-          <div class="o-input">
-            <label class="o-input__label">Address</label>
-            <div class="o-input__field" data-form-field="address" contenteditable="false" placeholder="Address"></div>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/javascripts/contact_api_compiled.js"></script>
 
     <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
@@ -91,5 +50,8 @@
       </defs>
     </svg>
 
+
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/contact_api_compiled.js"></script>
   </body>
 </html>
