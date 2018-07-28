@@ -1,0 +1,47 @@
+.o-button {
+  @include transition-curve();
+  -webkit-appearance: none;
+  border-radius: 0;
+  outline: 0;
+  box-shadow: 0;
+  text-align: center;
+  border: 2px solid $color_blue;
+  color: $color_blue;
+  background-color: transparent;
+  padding: .35rem 1.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: $color_blue;
+    color: $color_white;
+
+    .o-icon svg {
+      fill: $color_white;
+    }
+  }
+
+  .o-icon {
+    vertical-align: top;
+    width: 1rem;
+    height: 1rem;
+    margin-right: .05rem;
+
+    svg {
+      fill: $color_blue;
+    }
+  }
+}
+
+.o-button-group {
+  margin: .5rem 0;
+
+  .o-button {
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
