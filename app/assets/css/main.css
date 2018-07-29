@@ -1532,10 +1532,10 @@ table {
       font-size: 1.25rem; } }
 
 .o-button {
-  -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -webkit-transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -o-transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   /* easeOutCirc */
   -webkit-appearance: none;
   border-radius: 0;
@@ -1546,8 +1546,10 @@ table {
   color: #0984e3;
   background-color: transparent;
   padding: .35rem 1.5rem;
+  transform: translateY(0);
   cursor: pointer;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  position: relative; }
   .o-button:hover {
     background-color: #0984e3;
     color: #ffffff; }
@@ -1561,6 +1563,31 @@ table {
     .o-button .o-icon svg {
       fill: #0984e3; }
 
+.o-button--save {
+  border-color: #2ecc71;
+  color: #2ecc71; }
+  .o-button--save .o-icon svg {
+    fill: #2ecc71; }
+  .o-button--save:hover {
+    border-color: #2ecc71;
+    background-color: #2ecc71; }
+
+.o-button--destroy {
+  border-color: #e74c3c;
+  color: #e74c3c; }
+  .o-button--destroy .o-icon svg {
+    fill: #e74c3c; }
+  .o-button--destroy:hover {
+    border-color: #e74c3c;
+    background-color: #e74c3c; }
+
+.o-button--cancel {
+  border-color: transparent;
+  color: #e74c3c; }
+  .o-button--cancel:hover {
+    border-color: #e74c3c;
+    background-color: #e74c3c; }
+
 .o-button-group {
   margin: .5rem 0; }
   .o-button-group .o-button {
@@ -1568,6 +1595,12 @@ table {
     margin-bottom: .5rem; }
   .o-button-group:last-child {
     margin-right: 0; }
+
+.o-button-group--dynamic {
+  height: 40px;
+  overflow: hidden; }
+  .o-button-group--dynamic.alt-showing .o-button {
+    transform: translateY(-40px); }
 
 .c-dynamic-table {
   height: calc(100% - 159px); }

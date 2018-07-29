@@ -33,10 +33,12 @@ $color_gray_dark: #777777;
 $color_black: #000000;
 $color_white: #ffffff;
 $color_text: #2d3436;
+$color_red: #e74c3c;
+$color_green: #2ecc71;
 
-@mixin transition-curve() {
-  -webkit-transition: all .5s cubic-bezier(0.075, 0.820, 0.165, 1.000);
-     -moz-transition: all .5s cubic-bezier(0.075, 0.820, 0.165, 1.000);
-       -o-transition: all .5s cubic-bezier(0.075, 0.820, 0.165, 1.000);
-          transition: all .5s cubic-bezier(0.075, 0.820, 0.165, 1.000); /* easeOutCirc */
+@mixin transition-curve($timing: .5s) {
+  -webkit-transition: all $timing cubic-bezier(0.075, 0.820, 0.165, 1.000);
+     -moz-transition: all $timing cubic-bezier(0.075, 0.820, 0.165, 1.000);
+       -o-transition: all $timing cubic-bezier(0.075, 0.820, 0.165, 1.000);
+          transition: all $timing cubic-bezier(0.075, 0.820, 0.165, 1.000); /* easeOutCirc */
 }

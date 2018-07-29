@@ -13,9 +13,10 @@ contact_app.api.searchResults = [];
 contact_app.api.searchKeys = '';
 contact_app.api.sort = "last_name";
 contact_app.api.order = false;
-contact_app.api.commandDown = false;
+// contact_app.api.commandDown = false;
 contact_app.api.shiftDown = false;
 contact_app.api.isScrolling = false;
+contact_app.api.activeContact = false;
 contact_app.api.rowTemplate = "\n  <div class=\"c-dynamic-table__body__row  js-contact-row\" data-row-id=\"___ID___\">\n    <h5 class=\"c-dynamic-table__body__row__item\">___FIRST_NAME___ ___LAST_NAME___</h5>\n    <h5 class=\"c-dynamic-table__body__row__item\">___COMPANY_NAME___</h5>\n  </div>\n";
 
 // when you only have the quantity of entries we're dealing with, I'd rather just load them into memory instead of making more network requests
@@ -59,6 +60,36 @@ contact_app.api.list = function (_ref) {
   });
 };
 
+contact_app.api.update = function () {
+  if (contact_app.api.activeContact) {
+    var form_data = $(".js-contact-form").serialize();
+    $(".js-contact-form").find(".o-input__field").each(function () {
+      form_data = form_data + "&" + $(this).data("form-field") + "=" + $(this).text();
+    });
+
+    $.ajax({
+      url: contact_app.api.base_url + "contact/" + contact_app.api.activeContact,
+      method: "PUT",
+      data: form_data,
+      beforeSend: function beforeSend(request) {
+        request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
+      },
+      success: function success(data) {
+        $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+        $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+        if (contact_app.api.searchResults.length > 0) {
+          contact_app.api.filter(contact_app.api.searchResults);
+        } else {
+          contact_app.api.list(event);
+        }
+      },
+      error: function error(data) {
+        alert("There was a problem updating your contact!");
+      }
+    });
+  }
+};
+
 contact_app.api.render = function (contacts) {
   $(".c-dynamic-table__body").empty();
 
@@ -89,13 +120,12 @@ contact_app.api.search = function () {
     var _ref2;
 
     value = value.toString().toUpperCase();
-
     $.each(contact_app.api.searchKeys, function () {
       var _this = this;
 
       if (!["id", "created_at", "updated_at"].includes(this)) {
         contact_app.api.searchResults.push(contact_app.api.contacts.filter(function (contact) {
-          return contact[_this].toString().toUpperCase().includes(value);
+          return contact[_this] ? contact[_this].toString().toUpperCase().includes(value) : false;
         }));
       }
     });
@@ -135,8 +165,13 @@ contact_app.api.searchObject = function (contactID, array) {
 
 contact_app.api.renderContact = function (contactID) {
   var contact = contact_app.api.searchObject(contactID, contact_app.api.contacts);
+  contact_app.api.activeContact = contactID;
   Object.keys(contact).forEach(function (key) {
-    $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
+    if (key == "id") {
+      $(".js-contact-form").find("input[data-form-field='id']").val(contact[key]);
+    } else {
+      $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
+    }
   });
 };
 
@@ -166,14 +201,17 @@ $(function () {
   });
 
   $("body").on("touchend.selectContact click.selectContact", ".js-contact-row", function (event) {
-    if (!contact_app.api.isScrolling) {
-      if (contact_app.api.commandDown) {
-        $(this).toggleClass("is-selected");
-      } else {
-        $(".c-modal").addClass("is-active");
-        contact_app.api.renderContact($(this).data("row-id"));
-      }
-    }
+    $(".c-modal").addClass("is-active");
+    contact_app.api.renderContact($(this).data("row-id"));
+
+    // if (!contact_app.api.isScrolling) {
+    //   if (contact_app.api.commandDown) {
+    //     $(this).toggleClass("is-selected");
+    //   } else {
+    //     $(".c-modal").addClass("is-active");
+    //     contact_app.api.renderContact($(this).data("row-id"));
+    //   }
+    // }
   });
 
   $("body").on("click.selectClear", function (event) {
@@ -185,37 +223,50 @@ $(function () {
   $("body").on("touchend.closeModal click.closeModal", function (event) {
     event.stopPropagation();
     if ($(event.target).hasClass("c-modal")) {
+      contact_app.api.activeContact = false;
       $(".c-modal").removeClass("is-active");
       $(".js-contact-form").find(".o-input__field").html("");
       $(".c-modal__inner").scrollTop(0);
       $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+      $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
     }
   });
 
-  $(document).on("keydown.modifiers", function (event) {
-    switch (event.which) {
-      case 91:
-        contact_app.api.commandDown = true;
-        break;
-      case 16:
-        contact_app.api.shiftDown = true;
-        break;
-    }
-  });
+  // $(document).on("keydown.modifiers", function(event) {
+  //   switch (event.which) {
+  //     case 91:
+  //       contact_app.api.commandDown = true;
+  //       break;
+  //     case 16:
+  //       contact_app.api.shiftDown = true;
+  //       break;
+  //   }
+  // });
 
-  $(document).on("keyup.modifiers", function (event) {
-    switch (event.which) {
-      case 91:
-        contact_app.api.commandDown = false;
-        break;
-      case 16:
-        contact_app.api.shiftDown = false;
-        break;
-    }
-  });
+  // $(document).on("keyup.modifiers", function(event) {
+  //   switch (event.which) {
+  //     case 91:
+  //       contact_app.api.commandDown = false;
+  //       break;
+  //     case 16:
+  //       contact_app.api.shiftDown = false;
+  //       break;
+  //   }
+  // });
 
   $(".js-contact-edit").on("click", function () {
     $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
+    $(this).closest(".o-button-group--dynamic").addClass("alt-showing");
+  });
+
+  $(".js-contact-cancel").on("click", function () {
+    $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+    $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+    contact_app.api.renderContact(contact_app.api.activeContact);
+  });
+
+  $(".js-contact-save").on("click", function () {
+    contact_app.api.update();
   });
 
   $(document).on("touchstart", function () {

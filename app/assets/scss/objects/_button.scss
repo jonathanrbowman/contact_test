@@ -1,5 +1,21 @@
+@mixin button-variant($name, $color) {
+  .o-button--#{$name} {
+    border-color: $color;
+    color: $color;
+
+    .o-icon svg {
+      fill: $color;
+    }
+
+    &:hover {
+      border-color: $color;
+      background-color: $color;
+    }
+  }
+}
+
 .o-button {
-  @include transition-curve();
+  @include transition-curve(.25s);
   -webkit-appearance: none;
   border-radius: 0;
   outline: 0;
@@ -9,8 +25,10 @@
   color: $color_blue;
   background-color: transparent;
   padding: .35rem 1.5rem;
+  transform: translateY(0);
   cursor: pointer;
   text-transform: uppercase;
+  position: relative;
 
   &:hover {
     background-color: $color_blue;
@@ -33,6 +51,19 @@
   }
 }
 
+@include button-variant("save", $color_green);
+@include button-variant("destroy", $color_red);
+
+.o-button--cancel {
+  border-color: transparent;
+  color: $color_red;
+
+  &:hover {
+    border-color: $color_red;
+    background-color: $color_red;
+  }
+}
+
 .o-button-group {
   margin: .5rem 0;
 
@@ -43,5 +74,16 @@
 
   &:last-child {
     margin-right: 0;
+  }
+}
+
+.o-button-group--dynamic {
+  height: 40px;
+  overflow: hidden;
+
+  &.alt-showing {
+    .o-button {
+      transform: translateY(-40px);
+    }
   }
 }

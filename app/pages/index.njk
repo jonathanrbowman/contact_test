@@ -31,7 +31,8 @@
     <div class="c-modal__inner">
       <h3>View Contact</h3>
       <form class="js-contact-form" method="post">
-        <div class="o-button-group">
+        <input data-form-field="id" type="hidden" class="js-current-contact">
+        <div class="o-button-group  o-button-group--dynamic">
           <button type="button" class="o-button  o-button--update  js-contact-edit">
             <div class="o-icon  o-icon--edit"><svg class="o-icon__svg"><use xlink:href="#o-icon--edit"></use></svg></div>
             Edit
@@ -39,6 +40,14 @@
           <button type="button" class="o-button  o-button--destroy  js-contact-destroy">
             <div class="o-icon  o-icon--trash"><svg class="o-icon__svg"><use xlink:href="#o-icon--trash"></use></svg></div>
             Delete
+          </button>
+          <br>
+          <button type="button" class="o-button  o-button--save  js-contact-save">
+            <div class="o-icon  o-icon--check"><svg class="o-icon__svg"><use xlink:href="#o-icon--check"></use></svg></div>
+            Save
+          </button>
+          <button type="button" class="o-button  o-button--cancel  js-contact-cancel">
+            Cancel
           </button>
         </div>
         <div class="o-layout">
