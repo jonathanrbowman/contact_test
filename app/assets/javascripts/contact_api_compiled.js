@@ -204,14 +204,14 @@ $(function () {
     $(".c-modal").addClass("is-active");
     contact_app.api.renderContact($(this).data("row-id"));
 
-    // if (!contact_app.api.isScrolling) {
-    //   if (contact_app.api.commandDown) {
-    //     $(this).toggleClass("is-selected");
-    //   } else {
-    //     $(".c-modal").addClass("is-active");
-    //     contact_app.api.renderContact($(this).data("row-id"));
-    //   }
-    // }
+    if (!contact_app.api.isScrolling) {
+      if (contact_app.api.commandDown) {
+        $(this).toggleClass("is-selected");
+      } else {
+        $(".c-modal").addClass("is-active");
+        contact_app.api.renderContact($(this).data("row-id"));
+      }
+    }
   });
 
   $("body").on("click.selectClear", function (event) {
