@@ -1510,6 +1510,11 @@ table {
     border-style: dashed; }
 
 .o-icon {
+  -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* easeOutCirc */
   display: inline-block;
   width: 2rem;
   height: 2rem;
@@ -1710,6 +1715,15 @@ table {
   @media (min-width: 46.25em) {
     .c-modal__inner {
       padding: 1.5rem; } }
+  .c-modal__inner .o-icon--close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    cursor: pointer; }
+    .c-modal__inner .o-icon--close:hover {
+      background-color: #f1f1f1; }
+    .c-modal__inner .o-icon--close svg {
+      fill: #e74c3c; }
 
 /* ==========================================================================
    #CLEARFIX

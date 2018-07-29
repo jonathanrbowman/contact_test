@@ -222,7 +222,8 @@ $(function () {
 
   $("body").on("touchend.closeModal click.closeModal", function (event) {
     event.stopPropagation();
-    if ($(event.target).hasClass("c-modal")) {
+    console.log(event.target);
+    if ($(event.target).hasClass("c-modal") || $(event.target).closest(".js-close-modal").length > 0) {
       contact_app.api.activeContact = false;
       $(".c-modal").removeClass("is-active");
       $(".js-contact-form").find(".o-input__field").html("");

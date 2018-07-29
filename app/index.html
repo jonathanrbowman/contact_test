@@ -34,6 +34,7 @@
 
   <div class="c-modal">
     <div class="c-modal__inner">
+      <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
       <h3>View Contact</h3>
       <form class="js-contact-form" method="post">
         <input data-form-field="id" type="hidden" class="js-current-contact">
@@ -137,6 +138,10 @@
     
     <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
+    <symbol id="o-icon--close" viewBox="0 0 24 24">
+    <title>close</title>
+    <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
+    </symbol>
     <symbol id="o-icon--check" viewBox="0 0 24 24">
     <title>check</title>
     <path d="M9.984 17.016l9-9-1.406-1.453-7.594 7.594-3.563-3.563-1.406 1.406zM12 2.016c5.531 0 9.984 4.453 9.984 9.984s-4.453 9.984-9.984 9.984-9.984-4.453-9.984-9.984 4.453-9.984 9.984-9.984z"></path>
@@ -175,8 +180,6 @@
     </symbol>
     </defs>
     </svg>
-
-
 
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascripts/contact_api_compiled.js"></script>

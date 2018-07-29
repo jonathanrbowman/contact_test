@@ -1,4 +1,5 @@
 .o-icon {
+  @include transition-curve();
   display: inline-block;
   width: 2rem;
   height: 2rem;

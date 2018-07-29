@@ -40,4 +40,19 @@
   @include mq($from: 'tablet') {
     padding: 1.5rem;
   }
+
+  .o-icon--close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color_gray_lighter;
+    }
+
+    svg {
+      fill: $color_red;
+    }
+  }
 }
