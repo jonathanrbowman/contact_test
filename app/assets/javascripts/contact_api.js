@@ -54,7 +54,13 @@ contact_app.api.list = function({event, page = 1, sort = "last_name", desc = fal
 contact_app.api.create = function() {
   var form_data = $(".js-contact-form").serialize();
   $(".js-contact-form").find(".o-input__field").each(function() {
-    form_data = form_data + "&" + $(this).data("form-field") + "=" + $(this).text();
+    var form_field_value = $(this).text();
+    if ($(this).data("form-field") == "url") {
+      if (!$(this).text().startsWith("http")) {
+        form_field_value = "http://" + $(this).text();
+      }
+    }
+    form_data = form_data + "&" + $(this).data("form-field") + "=" + form_field_value;
   });
 
   $.ajax({
@@ -85,7 +91,13 @@ contact_app.api.update = function() {
   if (contact_app.api.activeContact) {
     var form_data = $(".js-contact-form").serialize();
     $(".js-contact-form").find(".o-input__field").each(function() {
-      form_data = form_data + "&" + $(this).data("form-field") + "=" + $(this).text();
+      var form_field_value = $(this).text();
+      if ($(this).data("form-field") == "url") {
+        if (!$(this).text().startsWith("http")) {
+          form_field_value = "http://" + $(this).text();
+        }
+      }
+      form_data = form_data + "&" + $(this).data("form-field") + "=" + form_field_value;
     });
 
     $.ajax({
@@ -140,11 +152,13 @@ contact_app.api.destroy = function() {
 
 contact_app.api.render = function(contacts) {
   $(".c-dynamic-table__body").empty();
+  var contact_array = [];
 
   if (contacts.length > 0) {
     $.each(contacts, function() {
-      $(".c-dynamic-table__body").append(contact_app.api.rowTemplate.replace("___FIRST_NAME___", this.first_name).replace("___LAST_NAME___", this.last_name).replace("___COMPANY_NAME___", this.company_name).replace("___ID___", this.id));
+      contact_array.push(contact_app.api.rowTemplate.replace("___FIRST_NAME___", this.first_name).replace("___LAST_NAME___", this.last_name).replace("___COMPANY_NAME___", this.company_name).replace("___ID___", this.id));
     });
+    $(".c-dynamic-table__body").append(contact_array);
   } else {
     $(".c-dynamic-table__body").append("<h5 class='o-heading  o-heading--thin  u-italicize'>No results found.</h5>");
   }
