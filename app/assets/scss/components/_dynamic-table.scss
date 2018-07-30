@@ -33,7 +33,6 @@
   @include transition-curve();
   font-size: 0;
   padding: .5rem .25rem;
-  background-color: $color_gray_lighter;
   cursor: pointer;
   transform: scale(.98);
 
@@ -44,11 +43,6 @@
   &:hover, &.is-selected {
     background-color: $color_blue_light;
     transform: scale(1);
-  }
-
-  &:focus, &:active, &.is-selected {
-    background-color: $color_blue;
-    color: $color_white;
   }
 
   &.is-hidden {

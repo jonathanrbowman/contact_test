@@ -1647,7 +1647,6 @@ table {
   /* easeOutCirc */
   font-size: 0;
   padding: .5rem .25rem;
-  background-color: #f1f1f1;
   cursor: pointer;
   transform: scale(0.98); }
   .c-dynamic-table__body__row:nth-child(even) {
@@ -1655,9 +1654,6 @@ table {
   .c-dynamic-table__body__row:hover, .c-dynamic-table__body__row.is-selected {
     background-color: #8bcafa;
     transform: scale(1); }
-  .c-dynamic-table__body__row:focus, .c-dynamic-table__body__row:active, .c-dynamic-table__body__row.is-selected {
-    background-color: #0984e3;
-    color: #ffffff; }
   .c-dynamic-table__body__row.is-hidden {
     display: none; }
 
