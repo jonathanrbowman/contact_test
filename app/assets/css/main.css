@@ -1530,6 +1530,10 @@ table {
 .o-icon--bordered {
   border: 2px solid #aaaaaa; }
 
+.o-icon--inline {
+  margin-right: .5rem;
+  vertical-align: middle; }
+
 .o-sort {
   font-size: 1rem; }
   @media (min-width: 46.25em) {
@@ -1605,6 +1609,8 @@ table {
   height: 40px;
   overflow: hidden; }
   .o-button-group--dynamic.alt-showing .o-button {
+    transform: translateY(-40px); }
+  .new-entry .o-button-group--dynamic .o-button {
     transform: translateY(-40px); }
 
 .c-dynamic-table {

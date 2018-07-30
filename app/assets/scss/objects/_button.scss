@@ -86,4 +86,10 @@
       transform: translateY(-40px);
     }
   }
+
+  .new-entry & {
+    .o-button {
+      transform: translateY(-40px);
+    }
+  }
 }

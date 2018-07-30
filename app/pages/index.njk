@@ -12,9 +12,19 @@
   <div class="c-app-header">
     <h1 class="o-heading  o-heading--page-title">Your Contacts</h1>
 
-    <div class="o-input  o-input--has-icon">
-      <div class="o-icon  o-icon--search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
-      <input type="text" class="o-input__field  js-contact-search" placeholder="Search Contacts">
+    <div class="o-layout  o-layout--small">
+      <div class="o-layout__item  u-2/5">
+        <div class="o-input  o-input--has-icon">
+          <div class="o-icon  o-icon--search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
+          <input type="text" class="o-input__field  js-contact-search" placeholder="Search">
+        </div>
+      </div>
+      <div class="o-layout__item  u-2/5  js-add-contact">
+        <div class="o-icon  o-icon--user-add  o-icon--inline"><svg class="o-icon__svg"><use xlink:href="#o-icon--user-add"></use></svg></div>Add User
+      </div>
+      <div class="o-layout__item  u-1/5">
+        <div class="o-icon  o-icon--more  o-icon--inline"><svg class="o-icon__svg"><use xlink:href="#o-icon--more"></use></svg></div>
+      </div>
     </div>
   </div>
 
@@ -30,7 +40,7 @@
   <div class="c-modal">
     <div class="c-modal__inner">
       <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
-      <h3>View Contact</h3>
+      <h3 class="js-contact-form-header">View Contact</h3>
       <form class="js-contact-form" method="post">
         <input data-form-field="id" type="hidden" class="js-current-contact">
         <div class="o-button-group  o-button-group--dynamic">

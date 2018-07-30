@@ -60,6 +60,36 @@ contact_app.api.list = function (_ref) {
   });
 };
 
+contact_app.api.create = function () {
+  var form_data = $(".js-contact-form").serialize();
+  $(".js-contact-form").find(".o-input__field").each(function () {
+    form_data = form_data + "&" + $(this).data("form-field") + "=" + $(this).text();
+  });
+
+  $.ajax({
+    url: contact_app.api.base_url + "contact",
+    method: "POST",
+    data: form_data,
+    beforeSend: function beforeSend(request) {
+      request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
+    },
+    success: function success(data) {
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+      $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+      $(".c-modal").removeClass("is-active new-entry");
+      if (contact_app.api.searchResults.length > 0) {
+        contact_app.api.filter(contact_app.api.searchResults);
+      } else {
+        contact_app.api.list(event);
+      }
+    },
+    error: function error(data) {
+      console.log(data);
+      alert("There was a problem updating your contact!");
+    }
+  });
+};
+
 contact_app.api.update = function () {
   if (contact_app.api.activeContact) {
     var form_data = $(".js-contact-form").serialize();
@@ -84,6 +114,33 @@ contact_app.api.update = function () {
         }
       },
       error: function error(data) {
+        alert("There was a problem updating your contact!");
+      }
+    });
+  }
+};
+
+contact_app.api.destroy = function () {
+  if (contact_app.api.activeContact) {
+    var form_data = $(".js-contact-form").serialize();
+    $(".js-contact-form").find(".o-input__field").each(function () {
+      form_data = form_data + "&" + $(this).data("form-field") + "=" + $(this).text();
+    });
+
+    $.ajax({
+      url: contact_app.api.base_url + "contact/" + contact_app.api.activeContact,
+      method: "DELETE",
+      beforeSend: function beforeSend(request) {
+        request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
+      },
+      success: function success(data) {
+        $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+        $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+        $(".c-modal").removeClass("is-active");
+        contact_app.api.list(event);
+      },
+      error: function error(data) {
+        console.log(data);
         alert("There was a problem updating your contact!");
       }
     });
@@ -163,16 +220,20 @@ contact_app.api.searchObject = function (contactID, array) {
   }
 };
 
-contact_app.api.renderContact = function (contactID) {
-  var contact = contact_app.api.searchObject(contactID, contact_app.api.contacts);
-  contact_app.api.activeContact = contactID;
-  Object.keys(contact).forEach(function (key) {
-    if (key == "id") {
-      $(".js-contact-form").find("input[data-form-field='id']").val(contact[key]);
-    } else {
-      $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
-    }
-  });
+contact_app.api.renderContactForm = function () {
+  var contactID = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+  if (contactID) {
+    var contact = contact_app.api.searchObject(contactID, contact_app.api.contacts);
+    contact_app.api.activeContact = contactID;
+    Object.keys(contact).forEach(function (key) {
+      if (key == "id") {
+        $(".js-contact-form").find("input[data-form-field='id']").val(contact[key]);
+      } else {
+        $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
+      }
+    });
+  } else {}
 };
 
 // init with loading the contacts into memory
@@ -201,15 +262,14 @@ $(function () {
   });
 
   $("body").on("touchend.selectContact click.selectContact", ".js-contact-row", function (event) {
-    $(".c-modal").addClass("is-active");
-    contact_app.api.renderContact($(this).data("row-id"));
+    $(".c-modal").addClass("is-active").find(".js-contact-form-header").text("View Contact");
 
     if (!contact_app.api.isScrolling) {
       if (contact_app.api.commandDown) {
         $(this).toggleClass("is-selected");
       } else {
         $(".c-modal").addClass("is-active");
-        contact_app.api.renderContact($(this).data("row-id"));
+        contact_app.api.renderContactForm($(this).data("row-id"));
       }
     }
   });
@@ -222,10 +282,9 @@ $(function () {
 
   $("body").on("touchend.closeModal click.closeModal", function (event) {
     event.stopPropagation();
-    console.log(event.target);
     if ($(event.target).hasClass("c-modal") || $(event.target).closest(".js-close-modal").length > 0) {
       contact_app.api.activeContact = false;
-      $(".c-modal").removeClass("is-active");
+      $(".c-modal").removeClass("is-active new-entry");
       $(".js-contact-form").find(".o-input__field").html("");
       $(".c-modal__inner").scrollTop(0);
       $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
@@ -262,12 +321,28 @@ $(function () {
 
   $(".js-contact-cancel").on("click", function () {
     $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
-    $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
-    contact_app.api.renderContact(contact_app.api.activeContact);
+    if ($(this).closest(".new-entry").length > 0) {
+      $(".c-modal").removeClass("is-active new-entry");
+      $(".js-contact-form").find(".o-input__field").html("");
+      $(".c-modal__inner").scrollTop(0);
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+      $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+    } else {
+      $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+      contact_app.api.renderContactForm(contact_app.api.activeContact);
+    }
   });
 
-  $(".js-contact-save").on("click", function () {
-    contact_app.api.update();
+  $(".js-contact-save").on("click.save", function () {
+    if ($(this).closest(".c-modal.new-entry").length > 0) {
+      contact_app.api.create();
+    } else {
+      contact_app.api.update();
+    }
+  });
+
+  $(".js-contact-destroy").on("click.destroy", function () {
+    contact_app.api.destroy();
   });
 
   $(document).on("touchstart", function () {
@@ -276,5 +351,11 @@ $(function () {
 
   $(document).on("touchmove", function () {
     contact_app.api.isScrolling = true;
+  });
+
+  $(".js-add-contact").on("click", function () {
+    $(".c-modal").addClass("is-active new-entry").find(".js-contact-form-header").text("New Contact");
+    $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
+    contact_app.api.renderContactForm();
   });
 });
