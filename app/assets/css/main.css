@@ -1618,10 +1618,10 @@ table {
     transform: translateY(-40px); }
 
 .c-dynamic-table {
-  height: calc(100% - 159px); }
-  @media (min-width: 46.25em) {
+  height: calc(100% - 217px); }
+  @media (min-width: 26.25em) {
     .c-dynamic-table {
-      height: calc(100% - 168px); } }
+      height: calc(100% - 185px); } }
 
 .c-dynamic-table__headings {
   font-size: 0;
