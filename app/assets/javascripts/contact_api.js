@@ -399,7 +399,7 @@ $(function() {
     contact_app.api.renderContactForm();
   });
 
-  $(".to-csv").on("click", function() {
+  $(".js-download-csv").on("click", function() {
     contact_app.api.exportCSV(contact_app.api.contacts);
   });
 
