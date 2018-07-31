@@ -13,7 +13,6 @@ contact_app.api.searchResults = [];
 contact_app.api.searchKeys = '';
 contact_app.api.sort = "last_name";
 contact_app.api.order = false;
-// contact_app.api.commandDown = false;
 contact_app.api.shiftDown = false;
 contact_app.api.isScrolling = false;
 contact_app.api.activeContact = false;
@@ -339,15 +338,9 @@ $(function () {
   });
 
   $("body").on("touchend.selectContact click.selectContact", ".js-contact-row", function (event) {
-    $(".c-modal").addClass("is-active").find(".js-contact-form-header").text("View Contact");
-
     if (!contact_app.api.isScrolling) {
-      if (contact_app.api.commandDown) {
-        $(this).toggleClass("is-selected");
-      } else {
-        $(".c-modal").addClass("is-active");
-        contact_app.api.renderContactForm($(this).data("row-id"));
-      }
+      $(".c-modal").addClass("is-active").find(".js-contact-form-header").text("View Contact");
+      contact_app.api.renderContactForm($(this).data("row-id"));
     }
   });
 
