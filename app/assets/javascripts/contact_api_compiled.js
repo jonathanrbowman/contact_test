@@ -404,6 +404,10 @@ $(function () {
     contact_app.api.isScrolling = true;
   });
 
+  $(document).on("touchend", function () {
+    contact_app.api.isScrolling = false;
+  });
+
   $(".js-add-contact").on("click", function () {
     $(".c-modal").addClass("is-active new-entry").find(".js-contact-form-header").text("New Contact");
     $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
