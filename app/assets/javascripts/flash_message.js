@@ -27,7 +27,7 @@ contact_app.flashMessage.dismiss = function(element) {
 };
 
 $(function() {
-  $("body").on("click.dismissFlash", ".c-flash-message", function() {
+  $("body").on("touchend.dismissFlash click.dismissFlash", ".c-flash-message", function() {
     contact_app.flashMessage.dismiss($(this));
   });
 });
