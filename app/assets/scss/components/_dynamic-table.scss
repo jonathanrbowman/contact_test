@@ -37,7 +37,7 @@
   transform: scale(.98);
 
   &:nth-child(even) {
-    background-color: $color_gray_lightest;
+    background-color: rgba($color_black, .02);
   }
 
   &:hover, &.is-selected {

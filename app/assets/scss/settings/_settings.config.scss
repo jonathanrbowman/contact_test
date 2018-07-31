@@ -23,6 +23,7 @@ $mq-breakpoints: (
 }
 
 $color_blue: #0984e3;
+$color_blue_lighter: lighten($color_blue, 43);
 $color_blue_light: lighten($color_blue, 30);
 $color_blue_dark: darken($color_blue, 43);
 $color_gray_lightest: #f7f7f7;

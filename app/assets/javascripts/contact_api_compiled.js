@@ -64,8 +64,8 @@ contact_app.api.create = function () {
   var form_data = $(".js-contact-form").serialize();
   $(".js-contact-form").find(".o-input__field").each(function () {
     var form_field_value = $(this).text();
-    if ($(this).data("form-field") == "url") {
-      if (!$(this).text().startsWith("http")) {
+    if ($(this).data("form-field") === "url") {
+      if (!$(this).text().startsWith("http") && !$(this).text() === "") {
         form_field_value = "http://" + $(this).text();
       }
     }
@@ -247,7 +247,35 @@ contact_app.api.renderContactForm = function () {
         $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
       }
     });
-  } else {}
+  }
+};
+
+contact_app.api.exportCSV = function (object) {
+  var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+  data = object.data || null;
+  if (data == null || !data.length) {
+    return null;
+  }
+
+  columnDelimiter = object.columnDelimiter || ',';
+  lineDelimiter = object.lineDelimiter || '\n';
+
+  keys = Object.keys(data[0]);
+
+  result = '';
+  result += keys.join(columnDelimiter);
+  result += lineDelimiter;
+
+  data.forEach(function (item) {
+    ctr = 0;
+    keys.forEach(function (key) {
+      if (ctr > 0) result += columnDelimiter;
+      result += item[key];
+      ctr++;
+    });
+    result += lineDelimiter;
+  });
 };
 
 // init with loading the contacts into memory
@@ -294,7 +322,7 @@ $(function () {
     }
   });
 
-  $("body").on("touchend.closeModal click.closeModal", function (event) {
+  $("body").on("touchstart.closeModal mousedown.closeModal", function (event) {
     event.stopPropagation();
     if ($(event.target).hasClass("c-modal") || $(event.target).closest(".js-close-modal").length > 0) {
       contact_app.api.activeContact = false;
@@ -356,7 +384,9 @@ $(function () {
   });
 
   $(".js-contact-destroy").on("click.destroy", function () {
-    contact_app.api.destroy();
+    if (confirm("Are you sure you want to remove this contact?")) {
+      contact_app.api.destroy();
+    }
   });
 
   $(document).on("touchstart", function () {
@@ -371,5 +401,60 @@ $(function () {
     $(".c-modal").addClass("is-active new-entry").find(".js-contact-form-header").text("New Contact");
     $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
     contact_app.api.renderContactForm();
+  });
+
+  function convertArrayOfObjectsToCSV(args) {
+    var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+    data = args.data || null;
+    if (data == null || !data.length) {
+      return null;
+    }
+
+    columnDelimiter = args.columnDelimiter || ',';
+    lineDelimiter = args.lineDelimiter || '\n';
+
+    keys = Object.keys(data[0]);
+
+    result = '';
+    result += keys.join(columnDelimiter);
+    result += lineDelimiter;
+
+    data.forEach(function (item) {
+      ctr = 0;
+      keys.forEach(function (key) {
+        if (ctr > 0) result += columnDelimiter;
+
+        result += item[key];
+        ctr++;
+      });
+      result += lineDelimiter;
+    });
+
+    return result;
+  };
+
+  function downloadCSV(args) {
+    var data, filename, link;
+    var csv = convertArrayOfObjectsToCSV({
+      data: args
+    });
+    if (csv == null) return;
+
+    filename = args.filename || 'export.csv';
+
+    if (!csv.match(/^data:text\/csv/i)) {
+      csv = 'data:text/csv;charset=utf-8,' + csv;
+    }
+    data = encodeURI(csv);
+
+    link = document.createElement('a');
+    link.setAttribute('href', data);
+    link.setAttribute('download', filename);
+    link.click();
+  };
+
+  $(".to-csv").on("click", function () {
+    downloadCSV(contact_app.api.contacts);
   });
 });

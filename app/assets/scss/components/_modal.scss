@@ -5,7 +5,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba($color_blue_dark, .9);
+  background-color: rgba($color_blue_dark, .8);
   z-index: 2;
   pointer-events: none;
   opacity: 0;
@@ -32,6 +32,8 @@
   padding: .5rem;
   box-shadow: 0 2px 8px 1px $color_black;
   -webkit-overflow-scrolling: touch;
+  border: 15px solid $color_gray_lighter;
+  border: 15px solid $color_gray_lighter;
 
   .c-modal.is-active & {
     transform: translate(-50%, -50%);

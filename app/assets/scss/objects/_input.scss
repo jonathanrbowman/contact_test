@@ -16,6 +16,7 @@
 
 .o-input__field {
   @include transition-curve();
+  background-color: transparent;
   width: 100%;
   outline: 0;
   border: 0;
