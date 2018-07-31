@@ -49,6 +49,16 @@
       fill: $color_blue;
     }
   }
+
+  &[disabled] {
+    background-color: $color_gray_lighter;
+    border-color: $color_gray_lighter;
+    color: $color_gray;
+
+    .o-icon svg {
+      fill: $color_gray;
+    }
+  }
 }
 
 @include button-variant("save", $color_green);

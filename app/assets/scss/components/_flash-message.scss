@@ -1,0 +1,38 @@
+.c-flash-message {
+  @include transition-curve();
+  position: fixed;
+  top: 0;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -100%);
+  width: 100%;
+  background-color: $color_blue;
+  padding: 1rem 2rem;
+  color: $color_white;
+  text-align: center;
+  box-shadow: 0 0 0 5px rgba($color_blue, .6);
+  z-index: 10;
+
+  @include mq($from: 'mobile-tablet') {
+    width: auto;
+  }
+
+  &.is-active {
+    transform: translate(-50%, 0);
+  }
+
+  &.is-leaving {
+    opacity: 0;
+    transform: translate(-50%, 50%);
+  }
+}
+
+.c-flash-message--success {
+  background-color: $color_green;
+  box-shadow: 0 0 0 5px rgba($color_green, .6);
+}
+
+.c-flash-message--error {
+  background-color: $color_red;
+  box-shadow: 0 0 0 5px rgba($color_red, .6);
+}

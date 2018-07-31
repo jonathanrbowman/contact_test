@@ -32,8 +32,7 @@
   padding: .5rem;
   box-shadow: 0 2px 8px 1px $color_black;
   -webkit-overflow-scrolling: touch;
-  border: 15px solid $color_gray_lighter;
-  border: 15px solid $color_gray_lighter;
+  outline: 15px solid rgba($color_gray_dark, .75);
 
   .c-modal.is-active & {
     transform: translate(-50%, -50%);

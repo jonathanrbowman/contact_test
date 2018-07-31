@@ -63,6 +63,8 @@ contact_app.api.create = function() {
     form_data = form_data + "&" + $(this).data("form-field") + "=" + form_field_value;
   });
 
+  $(".o-button").prop("disabled", true);
+
   $.ajax({
     url: contact_app.api.base_url + "contact",
     method: "POST",
@@ -79,10 +81,14 @@ contact_app.api.create = function() {
       } else {
         contact_app.api.list(event);
       }
+
+      contact_app.flashMessage.show("Contact created!", "success");
     },
     error: function(data) {
-      console.log(data);
-      alert("There was a problem updating your contact!");
+      contact_app.flashMessage.show("There was a problem creating your contact :/", "error");
+    },
+    complete: function() {
+      $(".o-button").prop("disabled", false);
     }
   });
 };
@@ -100,6 +106,8 @@ contact_app.api.update = function() {
       form_data = form_data + "&" + $(this).data("form-field") + "=" + form_field_value;
     });
 
+    $(".o-button").prop("disabled", true);
+
     $.ajax({
       url: contact_app.api.base_url + "contact/" + contact_app.api.activeContact,
       method: "PUT",
@@ -115,9 +123,14 @@ contact_app.api.update = function() {
         } else {
           contact_app.api.list(event);
         }
+
+        contact_app.flashMessage.show("Contact updated!", "success");
       },
       error: function(data) {
-        alert("There was a problem updating your contact!");
+        contact_app.flashMessage.show("There was a problem updating your contact :/", "error");
+      },
+      complete: function() {
+        $(".o-button").prop("disabled", false);
       }
     });
   }
@@ -141,12 +154,25 @@ contact_app.api.destroy = function() {
         $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
         $(".c-modal").removeClass("is-active");
         contact_app.api.list(event);
+        contact_app.flashMessage.show("Contact removed!", "success");
       },
       error: function(data) {
-        console.log(data);
-        alert("There was a problem updating your contact!");
+        contact_app.flashMessage.show("There was a problem deleting the contact :/", "error");
       }
     });
+  }
+};
+
+contact_app.api.validate = function() {
+  var isValid = true;
+
+  if ($(".o-input__field[data-form-field='first_name']").val().trim() == "") {
+    isValid = false;
+  }
+
+  if (!isValid) {
+    contact_app.flashMessage.show("Please make sure you entered a first name!", "error");
+    return false;
   }
 };
 
@@ -232,32 +258,41 @@ contact_app.api.renderContactForm = function(contactID = false) {
   }
 };
 
-contact_app.api.exportCSV = function(object) {
+contact_app.api.exportCSV = function(contact_object) {
   var result, ctr, keys, columnDelimiter, lineDelimiter, data;
 
-  data = object.data || null;
-  if (data == null || !data.length) {
-    return null;
-  }
+  columnDelimiter = contact_object.columnDelimiter || ',';
+  lineDelimiter = contact_object.lineDelimiter || '\n';
 
-  columnDelimiter = object.columnDelimiter || ',';
-  lineDelimiter = object.lineDelimiter || '\n';
-
-  keys = Object.keys(data[0]);
+  keys = Object.keys(contact_object[0]);
 
   result = '';
   result += keys.join(columnDelimiter);
   result += lineDelimiter;
 
-  data.forEach(function(item) {
+  contact_object.forEach(function(item) {
     ctr = 0;
     keys.forEach(function(key) {
-      if (ctr > 0) result += columnDelimiter;
+      if (ctr > 0) {
+        result += columnDelimiter;
+      }
       result += item[key];
-      ctr++;
+      ctr ++;
     });
     result += lineDelimiter;
   });
+
+  var csv = result;
+  if (csv == null) return;
+
+  if (!csv.match(/^data:text\/csv/i)) {
+    csv = 'data:text/csv;charset=utf-8,' + csv;
+  }
+  data = encodeURI(csv);
+
+  window.open(data, '_blank');
+
+  contact_app.flashMessage.show("Contacts have been exported!", "success");
 };
 
 // init with loading the contacts into memory
@@ -316,28 +351,6 @@ $(function() {
     }
   });
 
-  // $(document).on("keydown.modifiers", function(event) {
-  //   switch (event.which) {
-  //     case 91:
-  //       contact_app.api.commandDown = true;
-  //       break;
-  //     case 16:
-  //       contact_app.api.shiftDown = true;
-  //       break;
-  //   }
-  // });
-
-  // $(document).on("keyup.modifiers", function(event) {
-  //   switch (event.which) {
-  //     case 91:
-  //       contact_app.api.commandDown = false;
-  //       break;
-  //     case 16:
-  //       contact_app.api.shiftDown = false;
-  //       break;
-  //   }
-  // });
-
   $(".js-contact-edit").on("click", function() {
     $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
     $(this).closest(".o-button-group--dynamic").addClass("alt-showing");
@@ -354,6 +367,7 @@ $(function() {
     } else {
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       contact_app.api.renderContactForm(contact_app.api.activeContact);
+      contact_app.flashMessage.show("Changes discarded");
     }
   });
 
@@ -385,61 +399,8 @@ $(function() {
     contact_app.api.renderContactForm();
   });
 
-  function convertArrayOfObjectsToCSV(args) {
-        var result, ctr, keys, columnDelimiter, lineDelimiter, data;
-
-        data = args.data || null;
-        if (data == null || !data.length) {
-            return null;
-        }
-
-        columnDelimiter = args.columnDelimiter || ',';
-        lineDelimiter = args.lineDelimiter || '\n';
-
-        keys = Object.keys(data[0]);
-
-        result = '';
-        result += keys.join(columnDelimiter);
-        result += lineDelimiter;
-
-        data.forEach(function(item) {
-            ctr = 0;
-            keys.forEach(function(key) {
-                if (ctr > 0) result += columnDelimiter;
-
-                result += item[key];
-                ctr++;
-            });
-            result += lineDelimiter;
-        });
-
-        return result;
-    };
-
-    function downloadCSV(args) {
-            var data, filename, link;
-            var csv = convertArrayOfObjectsToCSV({
-                data: args
-            });
-            if (csv == null) return;
-
-            filename = args.filename || 'export.csv';
-
-            if (!csv.match(/^data:text\/csv/i)) {
-                csv = 'data:text/csv;charset=utf-8,' + csv;
-            }
-            data = encodeURI(csv);
-
-            link = document.createElement('a');
-            link.setAttribute('href', data);
-            link.setAttribute('download', filename);
-            link.click();
-        };
-
   $(".to-csv").on("click", function() {
-    downloadCSV(contact_app.api.contacts);
+    contact_app.api.exportCSV(contact_app.api.contacts);
   });
-
-
 
 });

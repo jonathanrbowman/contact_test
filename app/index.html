@@ -15,7 +15,8 @@
   
 
   <div class="c-app-header">
-    <h1 class="o-heading  o-heading--page-title">Your Contacts</h1>
+    <h5 class="o-heading  u-text-align--center  u-no-margin"><small>(Assistant to the)</small></h5>
+    <h3 class="o-heading  o-heading--page-title  u-text-align--center  u-uppercase">Contact Manager</h3>
 
     <div class="o-layout  o-layout--small">
       <div class="o-layout__item  u-2/5">
@@ -28,7 +29,7 @@
         <div class="o-icon  o-icon--user-add  o-icon--inline"><svg class="o-icon__svg"><use xlink:href="#o-icon--user-add"></use></svg></div>Add User
       </div>
       <div class="o-layout__item  u-1/5">
-        <div class="o-icon  o-icon--more  o-icon--inline  to-csv"><svg class="o-icon__svg"><use xlink:href="#o-icon--more"></use></svg></div>
+        <div class="o-icon  o-icon--download  o-icon--inline  js-download-csv"><svg class="o-icon__svg"><use xlink:href="#o-icon--download"></use></svg></div>Download
       </div>
     </div>
   </div>
@@ -45,10 +46,10 @@
   <div class="c-modal">
     <div class="c-modal__inner">
       <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
-      <h3 class="js-contact-form-header">View Contact</h3>
+      <h3 class="js-contact-form-header  u-text-align--center">View Contact</h3>
       <form class="js-contact-form" method="post">
         <input data-form-field="id" type="hidden" class="js-current-contact">
-        <div class="o-button-group  o-button-group--dynamic">
+        <div class="o-button-group  o-button-group--dynamic    u-text-align--center">
           <button type="button" class="o-button  o-button--update  js-contact-edit">
             <div class="o-icon  o-icon--edit"><svg class="o-icon__svg"><use xlink:href="#o-icon--edit"></use></svg></div>
             Edit
@@ -148,6 +149,14 @@
     
     <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
+    <symbol id="o-icon--upload" viewBox="0 0 24 24">
+    <title>upload</title>
+    <path d="M14.016 12.984h3l-5.016-4.969-5.016 4.969h3v4.031h4.031v-4.031zM19.359 10.031c2.578 0.188 4.641 2.344 4.641 4.969 0 2.766-2.25 5.016-5.016 5.016h-12.984c-3.328 0-6-2.672-6-6 0-3.094 2.344-5.625 5.344-5.953 1.266-2.391 3.75-4.078 6.656-4.078 3.656 0 6.656 2.578 7.359 6.047z"></path>
+    </symbol>
+    <symbol id="o-icon--download" viewBox="0 0 24 24">
+    <title>download</title>
+    <path d="M17.016 12.984h-3v-3.984h-4.031v3.984h-3l5.016 5.016zM19.359 10.031c2.578 0.188 4.641 2.344 4.641 4.969 0 2.766-2.25 5.016-5.016 5.016h-12.984c-3.328 0-6-2.672-6-6 0-3.094 2.344-5.625 5.344-5.953 1.266-2.391 3.75-4.078 6.656-4.078 3.656 0 6.656 2.578 7.359 6.047z"></path>
+    </symbol>
     <symbol id="o-icon--more" viewBox="0 0 24 24">
     <title>more</title>
     <path d="M12 15.984c1.078 0 2.016 0.938 2.016 2.016s-0.938 2.016-2.016 2.016-2.016-0.938-2.016-2.016 0.938-2.016 2.016-2.016zM12 9.984c1.078 0 2.016 0.938 2.016 2.016s-0.938 2.016-2.016 2.016-2.016-0.938-2.016-2.016 0.938-2.016 2.016-2.016zM12 8.016c-1.078 0-2.016-0.938-2.016-2.016s0.938-2.016 2.016-2.016 2.016 0.938 2.016 2.016-0.938 2.016-2.016 2.016z"></path>
@@ -196,6 +205,7 @@
     </svg>
 
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/flash_message_compiled.js"></script>
     <script type="text/javascript" src="assets/javascripts/contact_api_compiled.js"></script>
   </body>
 </html>

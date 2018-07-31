@@ -41,7 +41,8 @@
   }
 
   &:hover, &.is-selected {
-    background-color: $color_blue_light;
+    background-color: $color_blue;
+    color: $color_white;
     transform: scale(1);
   }
 

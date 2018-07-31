@@ -12,10 +12,11 @@ $inuit-config: (
 );
 
 $mq-breakpoints: (
-  mobile:  320px,
-  tablet:  740px,
-  desktop: 980px,
-  wide:    1300px
+  mobile:        320px,
+  mobile-tablet: 420px,
+  tablet:        740px,
+  desktop:       980px,
+  wide:          1300px
 );
 
 @function inuit-config($key) {
@@ -31,6 +32,7 @@ $color_gray_lighter: #f1f1f1;
 $color_gray_light: #e6e6e6;
 $color_gray: #aaaaaa;
 $color_gray_dark: #777777;
+$color_gray_darker: #333333;
 $color_black: #000000;
 $color_white: #ffffff;
 $color_text: #2d3436;
