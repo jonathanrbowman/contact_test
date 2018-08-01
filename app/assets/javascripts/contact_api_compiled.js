@@ -259,6 +259,28 @@ contact_app.api.searchObject = function (contactID, array) {
   }
 };
 
+contact_app.api.manageFormState = function (context) {
+  switch (context) {
+    case "viewing":
+      $(".js-contact-form-header").text("View Contact");
+      break;
+    case "new-entry":
+      $(".c-modal").addClass("new-entry");
+      $(".js-contact-form-header").text("New Contact");
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
+      break;
+    case "editing":
+      break;
+    case "lock-down":
+      contact_app.api.activeContact = false;
+      $(".js-contact-form").find(".o-input__field").html("");
+      $(".c-modal__inner").scrollTop(0);
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+      $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+      break;
+  }
+};
+
 contact_app.api.renderContactForm = function () {
   var contactID = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
@@ -339,7 +361,7 @@ $(function () {
 
   $("body").on("touchend.selectContact click.selectContact", ".js-contact-row", function (event) {
     if (!contact_app.api.isScrolling) {
-      $(".c-modal").addClass("is-active").find(".js-contact-form-header").text("View Contact");
+      contact_app.modal.open("contact-form", contact_app.api.manageFormState("viewing"));
       contact_app.api.renderContactForm($(this).data("row-id"));
     }
   });
@@ -353,12 +375,7 @@ $(function () {
   $("body").on("touchstart.closeModal mousedown.closeModal", function (event) {
     event.stopPropagation();
     if ($(event.target).hasClass("c-modal") || $(event.target).closest(".js-close-modal").length > 0) {
-      contact_app.api.activeContact = false;
-      $(".c-modal").removeClass("is-active new-entry");
-      $(".js-contact-form").find(".o-input__field").html("");
-      $(".c-modal__inner").scrollTop(0);
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
-      $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+      contact_app.modal.close(contact_app.api.manageFormState("lock-down"));
     }
   });
 
@@ -370,11 +387,7 @@ $(function () {
   $(".js-contact-cancel").on("click", function () {
     $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
     if ($(this).closest(".new-entry").length > 0) {
-      $(".c-modal").removeClass("is-active new-entry");
-      $(".js-contact-form").find(".o-input__field").html("");
-      $(".c-modal__inner").scrollTop(0);
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
-      $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+      contact_app.modal.close(contact_app.api.manageFormState("lock-down"));
     } else {
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       contact_app.api.renderContactForm(contact_app.api.activeContact);
@@ -409,8 +422,7 @@ $(function () {
   });
 
   $(".js-add-contact").on("click", function () {
-    $(".c-modal").addClass("is-active new-entry").find(".js-contact-form-header").text("New Contact");
-    $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
+    contact_app.modal.open("contact-form", contact_app.api.manageFormState("new-entry"));
     contact_app.api.renderContactForm();
   });
 

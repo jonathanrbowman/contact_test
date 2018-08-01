@@ -10,7 +10,7 @@
   {% endmacro %}
 
   <div class="c-app-header">
-    <h5 class="o-heading  u-text-align--center  u-no-margin"><small>(Assistant to the)</small></h5>
+    <h5 class="o-heading  u-text-align--center  u-no-margin"><small>Assistant (to the)</small></h5>
     <h3 class="o-heading  o-heading--page-title  u-text-align--center  u-uppercase">Contact Manager</h3>
 
     <div class="o-layout  o-layout--small  u-text-align--center">
@@ -38,11 +38,11 @@
     <div class="c-dynamic-table__body"></div>
   </div>
 
-  <div class="c-modal">
+  <div class="c-modal" data-modal-id="contact-form">
     <div class="c-modal__inner">
-      <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
-      <h3 class="js-contact-form-header  u-text-align--center">View Contact</h3>
       <form class="js-contact-form" method="post">
+        <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
+        <h3 class="js-contact-form-header  u-text-align--center">View Contact</h3>
         <input data-form-field="id" type="hidden" class="js-current-contact">
         <div class="o-button-group  o-button-group--dynamic    u-text-align--center">
           <button type="button" class="o-button  o-button--update  js-contact-edit">
