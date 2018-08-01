@@ -232,6 +232,8 @@ contact_app.api.sortContacts = function(contacts, field) {
     return 0;
   });
 
+  console.log(contacts);
+
   contact_app.api.render(contacts);
 };
 
@@ -373,7 +375,7 @@ $(function() {
     } else {
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       contact_app.api.renderContactForm(contact_app.api.activeContact);
-      contact_app.flashMessage.show("Changes discarded");
+      contact_app.flashMessage.show("Changes discarded!");
     }
   });
 
@@ -410,6 +412,10 @@ $(function() {
 
   $(".js-download-csv").on("click", function() {
     contact_app.api.exportCSV(contact_app.api.contacts);
+  });
+
+  $(".js-sort-name").on("click", function() {
+    contact_app.api.sortContacts(contact_app.api.contacts, "first_name");
   });
 
 });

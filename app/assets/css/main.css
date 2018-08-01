@@ -1742,23 +1742,34 @@ table {
   position: fixed;
   top: 0;
   left: 50%;
-  top: 0;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -130%);
   width: 100%;
   background-color: #0984e3;
-  padding: 1rem 2rem;
+  padding: .5rem 1rem;
   color: #ffffff;
   text-align: center;
   box-shadow: 0 0 0 5px rgba(9, 132, 227, 0.6);
-  z-index: 10; }
-  @media (min-width: 26.25em) {
-    .c-flash-message {
-      width: auto; } }
+  z-index: 10;
+  opacity: 0; }
   .c-flash-message.is-active {
-    transform: translate(-50%, 0); }
+    transform: translate(-50%, 0);
+    opacity: 1; }
+    @media (min-width: 26.25em) {
+      .c-flash-message.is-active {
+        transform: none; } }
   .c-flash-message.is-leaving {
     opacity: 0;
-    transform: translate(-50%, 50%); }
+    transform: translate(-50%, 20%); }
+    @media (min-width: 26.25em) {
+      .c-flash-message.is-leaving {
+        transform: translate(0, 20%); } }
+  @media (min-width: 26.25em) {
+    .c-flash-message {
+      top: 20px;
+      left: 30px;
+      width: auto;
+      padding: 1rem 2rem;
+      transform: translate(-110%, 0); } }
 
 .c-flash-message--success {
   background-color: #2ecc71;

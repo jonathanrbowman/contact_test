@@ -3,27 +3,40 @@
   position: fixed;
   top: 0;
   left: 50%;
-  top: 0;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -130%);
   width: 100%;
   background-color: $color_blue;
-  padding: 1rem 2rem;
+  padding: .5rem 1rem;
   color: $color_white;
   text-align: center;
   box-shadow: 0 0 0 5px rgba($color_blue, .6);
   z-index: 10;
-
-  @include mq($from: 'mobile-tablet') {
-    width: auto;
-  }
+  opacity: 0;
 
   &.is-active {
     transform: translate(-50%, 0);
+    opacity: 1;
+
+    @include mq($from: 'mobile-tablet') {
+      transform: none;
+    }
   }
 
   &.is-leaving {
     opacity: 0;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, 20%);
+
+    @include mq($from: 'mobile-tablet') {
+      transform: translate(0, 20%);
+    }
+  }
+
+  @include mq($from: 'mobile-tablet') {
+    top: 20px;
+    left: 30px;
+    width: auto;
+    padding: 1rem 2rem;
+    transform: translate(-110%, 0);
   }
 }
 
