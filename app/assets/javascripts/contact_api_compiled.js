@@ -437,14 +437,14 @@ $(function () {
   });
 
   $(".js-show-search").on("click", function () {
-    $(".o-icon-group--dynamic").addClass("is-active");
-    $(".js-contact-search").focus();
-    $(".o-icon-group--dynamic__section__search").addClass("is-active");
+    $(".c-menu").addClass("showing-search");
+    setTimeout(function () {
+      $(".js-contact-search").focus();
+    }, 300);
   });
 
   $(".js-show-more").on("click", function () {
-    $(".o-icon-group--dynamic").addClass("is-active");
-    $(".o-icon-group--dynamic__section__more").addClass("is-active");
+    $(".c-menu").addClass("showing-more");
   });
 
   $(".js-reset-menu").on("click", function () {

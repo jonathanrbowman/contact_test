@@ -1,0 +1,34 @@
+.c-menu {
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+}
+
+.c-menu__inner {
+  @include transition-curve();
+  width: 100%;
+  transform: translateY(-80px);
+  position: absolute;
+
+  .c-menu.showing-more & {
+    transform: translateY(0);
+  }
+
+  .c-menu.showing-search & {
+    transform: translateY(-160px);
+  }
+}
+
+.c-menu__section {
+  height: 80px;
+  position: relative;
+}
+
+.c-menu__section__inner {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

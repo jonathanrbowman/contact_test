@@ -1463,7 +1463,8 @@ table {
   font-weight: 300; }
 
 .o-heading--page-title {
-  font-size: 1.5rem; }
+  font-size: 1.5rem;
+  margin-bottom: .5rem; }
 
 .o-input {
   width: 100%;
@@ -1507,6 +1508,10 @@ table {
     border-color: #f7f7f7;
     border-style: dashed; }
 
+.o-input--search {
+  width: 100%;
+  max-width: 400px; }
+
 .o-icon {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -1545,33 +1550,12 @@ table {
 
 .o-icon--bordered {
   border: 2px solid #0984e3; }
-  .o-icon--bordered .o-icon__svg {
+  .o-icon--bordered > .o-icon__svg {
     fill: #0984e3; }
 
 .o-icon--inline {
   margin-right: .5rem;
   vertical-align: middle; }
-
-.o-icon-group--dynamic {
-  height: 56px;
-  overflow: hidden;
-  max-width: 400px;
-  margin: 0 auto; }
-  .o-icon-group--dynamic.is-active .o-icon-group--dynamic__section {
-    transform: translateY(-56px); }
-
-.o-icon-group--dynamic__section {
-  -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  /* easeOutCirc */
-  position: relative; }
-
-.o-icon-group--dynamic__section__search, .o-icon-group--dynamic__section__more {
-  display: none; }
-  .o-icon-group--dynamic__section__search.is-active, .o-icon-group--dynamic__section__more.is-active {
-    display: block; }
 
 .o-sort {
   font-size: 1rem; }
@@ -1829,12 +1813,36 @@ table {
   max-height: calc(100% - 94px);
   overflow-y: scroll; }
 
-.c-search__input {
-  width: calc(100% - 130px); }
+.c-menu {
+  height: 80px;
+  overflow: hidden;
+  position: relative; }
 
-.c-search__cancel {
-  display: inline-block;
-  color: #e74c3c; }
+.c-menu__inner {
+  -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* easeOutCirc */
+  width: 100%;
+  transform: translateY(-80px);
+  position: absolute; }
+  .c-menu.showing-more .c-menu__inner {
+    transform: translateY(0); }
+  .c-menu.showing-search .c-menu__inner {
+    transform: translateY(-160px); }
+
+.c-menu__section {
+  height: 80px;
+  position: relative; }
+
+.c-menu__section__inner {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; }
 
 /* ==========================================================================
    #CLEARFIX

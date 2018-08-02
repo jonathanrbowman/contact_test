@@ -38,7 +38,7 @@
 .o-icon--bordered {
   border: 2px solid $color_blue;
 
-  .o-icon__svg {
+  & > .o-icon__svg {
     fill: $color_blue;
   }
 }
@@ -46,31 +46,4 @@
 .o-icon--inline {
   margin-right: .5rem;
   vertical-align: middle;
-}
-
-.o-icon-group--dynamic {
-  height: 56px;
-  overflow: hidden;
-  max-width: 400px;
-  margin: 0 auto;
-
-  &.is-active {
-
-    .o-icon-group--dynamic__section {
-      transform: translateY(-56px);
-    }
-  }
-}
-
-.o-icon-group--dynamic__section {
-  @include transition-curve();
-  position: relative;
-}
-
-.o-icon-group--dynamic__section__search, .o-icon-group--dynamic__section__more {
-  display: none;
-
-  &.is-active {
-    display: block;
-  }
 }
