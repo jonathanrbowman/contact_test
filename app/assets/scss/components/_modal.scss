@@ -22,8 +22,6 @@
   @include transition-curve();
   width: 90%;
   max-width: 640px;
-  max-height: 90%;
-  overflow-y: auto;
   background-color: $color_white;
   position: absolute;
   top: 50%;
@@ -34,12 +32,14 @@
   -webkit-overflow-scrolling: touch;
   outline: 15px solid rgba($color_gray_dark, .75);
 
-  .c-modal.is-active & {
-    transform: translate(-50%, -50%);
-  }
-
   @include mq($from: 'tablet') {
     padding: 1.5rem;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+
+  .c-modal.is-active & {
+    transform: translate(-50%, -50%);
   }
 
   .o-icon--close {

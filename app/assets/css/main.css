@@ -1724,8 +1724,6 @@ table {
   /* easeOutCirc */
   width: 90%;
   max-width: 640px;
-  max-height: 90%;
-  overflow-y: auto;
   background-color: #ffffff;
   position: absolute;
   top: 50%;
@@ -1735,11 +1733,13 @@ table {
   box-shadow: 0 2px 8px 1px #000000;
   -webkit-overflow-scrolling: touch;
   outline: 15px solid rgba(119, 119, 119, 0.75); }
-  .c-modal.is-active .c-modal__inner {
-    transform: translate(-50%, -50%); }
   @media (min-width: 46.25em) {
     .c-modal__inner {
-      padding: 1.5rem; } }
+      padding: 1.5rem;
+      max-height: 90%;
+      overflow-y: auto; } }
+  .c-modal.is-active .c-modal__inner {
+    transform: translate(-50%, -50%); }
   .c-modal__inner .o-icon--close {
     position: absolute;
     top: .5rem;
@@ -1803,8 +1803,7 @@ table {
 
 .c-form__body {
   max-height: calc(100% - 94px);
-  overflow-y: scroll;
-  padding: 1.5rem 0; }
+  overflow-y: scroll; }
 
 .c-menu {
   height: 80px;

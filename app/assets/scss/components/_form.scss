@@ -4,8 +4,11 @@
   max-height: 600px;
 }
 
+.c-form__header {
+  // padding-bottom: 1.5rem;
+}
+
 .c-form__body {
   max-height: calc(100% - 94px);
   overflow-y: scroll;
-  padding: 1.5rem 0;
 }
