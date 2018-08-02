@@ -1,0 +1,50 @@
+.c-upload-box {
+  width: 100%;
+  position: relative;
+}
+
+.c-upload-box__icon {
+  width: 4rem;
+  height: 4rem;
+
+  .o-icon__svg {
+    fill: $color_blue;
+  }
+}
+
+.c-upload-box__label {
+  @include transition-curve();
+  display: block;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 3px solid $color_blue;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 0 4px transparent;
+
+  &:hover {
+    box-shadow: 0 0 10px $color_blue;
+
+    .c-upload-box__icon {
+      transform: scale(1.2);
+    }
+  }
+
+  @include mq($from: 'desktop') {
+    padding: 2rem;
+  }
+}
+
+.c-upload-box__input {
+  width: 40px;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

@@ -22,7 +22,6 @@
   @include transition-curve();
   width: 90%;
   max-width: 640px;
-  height: 100%;
   background-color: $color_white;
   position: absolute;
   top: 50%;
@@ -56,5 +55,9 @@
     svg {
       fill: $color_red;
     }
+  }
+
+  .c-modal--full {
+    height: 100%;
   }
 }

@@ -18,9 +18,13 @@
         <div class="c-menu__section">
           <div class="c-menu__section__inner">
             <div class="o-button-group  u-text-align--center">
-              <button type="button" class="o-button  o-button--save  js-download-csv">
+              <button type="button" class="o-button  js-download-csv">
                 <div class="o-icon  o-icon--download"><svg class="o-icon__svg"><use xlink:href="#o-icon--download"></use></svg></div>
                 Download
+              </button>
+              <button type="button" class="o-button  js-modal-trigger" data-modal-id="contact-upload">
+                <div class="o-icon  o-icon--upload"><svg class="o-icon__svg"><use xlink:href="#o-icon--upload"></use></svg></div>
+                Upload
               </button>
             </div>
             <div class="c-menu__reset  o-icon  o-icon--chevron-down  js-reset-menu"><svg class="o-icon__svg"><use xlink:href="#o-icon--chevron-down"></use></svg></div>
@@ -57,7 +61,7 @@
     <div class="c-dynamic-table__body"></div>
   </div>
 
-  <div class="c-modal" data-modal-id="contact-form">
+  <div class="c-modal  c-modal--full" data-modal-id="contact-form">
     <div class="c-modal__inner">
       <form class="c-form  js-contact-form" method="post">
         <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
@@ -108,6 +112,21 @@
           </div>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div class="c-modal" data-modal-id="contact-upload">
+    <div class="c-modal__inner">
+      <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
+      <h3 class="js-contact-form-header  u-text-align--center  u-no-margin">Upload Contacts</h3>
+      <p class="u-text-align--center">You can upload a CSV file with contact info.</p>
+      <div class="c-upload-box">
+        <label for="contact-upload" class="c-upload-box__label  js-upload-box">
+          <div class="c-upload-box__icon  o-icon  o-icon--upload"><svg class="o-icon__svg"><use xlink:href="#o-icon--upload"></use></svg></div>
+          <h5 class="o-heading">Click/Tap or Drag File Here</h5>
+        </label>
+        <input id="contact-upload" type="file" name="contact_upload" class="c-upload-box__input">
+      </div>
     </div>
   </div>
 

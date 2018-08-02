@@ -1728,7 +1728,6 @@ table {
   /* easeOutCirc */
   width: 90%;
   max-width: 640px;
-  height: 100%;
   background-color: #ffffff;
   position: absolute;
   top: 50%;
@@ -1754,6 +1753,8 @@ table {
       background-color: #f1f1f1; }
     .c-modal__inner .o-icon--close svg {
       fill: #e74c3c; }
+  .c-modal__inner .c-modal--full {
+    height: 100%; }
 
 .c-flash-message {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -1868,6 +1869,50 @@ table {
   .c-menu__reset--up:hover {
     background-color: transparent;
     transform: rotate(180deg) translateY(5px); }
+
+.c-upload-box {
+  width: 100%;
+  position: relative; }
+
+.c-upload-box__icon {
+  width: 4rem;
+  height: 4rem; }
+  .c-upload-box__icon .o-icon__svg {
+    fill: #0984e3; }
+
+.c-upload-box__label {
+  -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* easeOutCirc */
+  display: block;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 3px solid #0984e3;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 0 4px transparent; }
+  .c-upload-box__label:hover {
+    box-shadow: 0 0 10px #0984e3; }
+    .c-upload-box__label:hover .c-upload-box__icon {
+      transform: scale(1.2); }
+  @media (min-width: 61.25em) {
+    .c-upload-box__label {
+      padding: 2rem; } }
+
+.c-upload-box__input {
+  width: 40px;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; }
 
 /* ==========================================================================
    #CLEARFIX
