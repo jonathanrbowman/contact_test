@@ -17,6 +17,10 @@ body, html {
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
   color: $color_text;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 * {
