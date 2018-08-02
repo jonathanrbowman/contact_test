@@ -1,9 +1,5 @@
 .c-dynamic-table {
-  height: calc(100% - 217px);
-
-  @include mq($from: 'mobile-tablet') {
-    height: calc(100% - 185px);
-  }
+  height: calc(100% - 196px);
 }
 
 .c-dynamic-table__headings {
