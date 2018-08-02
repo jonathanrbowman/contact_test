@@ -1516,21 +1516,62 @@ table {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
   .o-icon .o-icon__svg {
+    -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    /* easeOutCirc */
     width: 100%;
     height: 100%;
     fill: #777777; }
+  .o-icon:hover {
+    background-color: #0984e3;
+    border-color: #0984e3; }
+    .o-icon:hover .o-icon__svg {
+      fill: #ffffff; }
+
+.o-icon-group {
+  text-align: center;
+  margin-bottom: .75rem; }
 
 .o-icon--rounded {
-  border-radius: 100%; }
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  padding: .75rem; }
 
 .o-icon--bordered {
-  border: 2px solid #aaaaaa; }
+  border: 2px solid #0984e3; }
+  .o-icon--bordered .o-icon__svg {
+    fill: #0984e3; }
 
 .o-icon--inline {
   margin-right: .5rem;
   vertical-align: middle; }
+
+.o-icon-group--dynamic {
+  height: 56px;
+  overflow: hidden;
+  max-width: 400px;
+  margin: 0 auto; }
+  .o-icon-group--dynamic.is-active .o-icon-group--dynamic__section {
+    transform: translateY(-56px); }
+
+.o-icon-group--dynamic__section {
+  -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* easeOutCirc */
+  position: relative; }
+
+.o-icon-group--dynamic__section__search, .o-icon-group--dynamic__section__more {
+  display: none; }
+  .o-icon-group--dynamic__section__search.is-active, .o-icon-group--dynamic__section__more.is-active {
+    display: block; }
 
 .o-sort {
   font-size: 1rem; }
@@ -1778,6 +1819,22 @@ table {
 .c-flash-message--error {
   background-color: #e74c3c;
   box-shadow: 0 0 0 5px rgba(231, 76, 60, 0.6); }
+
+.c-form {
+  position: relative;
+  height: 600px;
+  max-height: 600px; }
+
+.c-form__body {
+  max-height: calc(100% - 94px);
+  overflow-y: scroll; }
+
+.c-search__input {
+  width: calc(100% - 130px); }
+
+.c-search__cancel {
+  display: inline-block;
+  color: #e74c3c; }
 
 /* ==========================================================================
    #CLEARFIX

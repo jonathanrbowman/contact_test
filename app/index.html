@@ -18,23 +18,27 @@
     <h5 class="o-heading  u-text-align--center  u-no-margin"><small>Assistant (to the)</small></h5>
     <h3 class="o-heading  o-heading--page-title  u-text-align--center  u-uppercase">Contact Manager</h3>
 
-    <div class="o-layout  o-layout--small  u-text-align--center">
-      <div class="o-layout__item  u-1/3@mobile-tablet">
-        <div class="o-input  o-input--has-icon">
-          <div class="o-icon  o-icon--search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
-          <input type="text" class="o-input__field  js-contact-search" placeholder="Search">
+    <div class="o-icon-group  o-icon-group--dynamic">
+      <div class="o-icon-group--dynamic__section">
+        <div class="o-icon  o-icon--search  o-icon--inline  o-icon--rounded  o-icon--bordered  js-show-search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
+        <div class="o-icon  o-icon--user-add  o-icon--inline  o-icon--rounded  o-icon--bordered  js-add-contact"><svg class="o-icon__svg"><use xlink:href="#o-icon--user-add"></use></svg></div>
+        <div class="o-icon  o-icon--more  o-icon--inline  o-icon--rounded  o-icon--bordered  js-show-more"><svg class="o-icon__svg"><use xlink:href="#o-icon--more"></use></svg></div>
+      </div>
+      <div class="o-icon-group--dynamic__section">
+        <div class="c-search  o-icon-group--dynamic__section__search">
+          <div class="o-input  o-input--has-icon  c-search__input">
+            <div class="o-icon  o-icon--search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
+            <input type="text" class="o-input__field  js-contact-search" placeholder="Search">
+          </div>
+          <button class="o-button  o-button--cancel  c-search__cancel  js-reset-menu">cancel</button>
         </div>
-      </div>
-      <div class="o-layout__item  u-1/2  u-1/3@mobile-tablet  js-add-contact">
-        <div class="o-icon  o-icon--user-add  o-icon--inline"><svg class="o-icon__svg"><use xlink:href="#o-icon--user-add"></use></svg></div>Add User
-      </div>
-      <div class="o-layout__item  u-1/2  u-1/3@mobile-tablet  js-download-csv">
-        <div class="o-icon  o-icon--download  o-icon--inline"><svg class="o-icon__svg"><use xlink:href="#o-icon--download"></use></svg></div>Download
+
+        <div class="o-icon-group--dynamic__section__more">
+          <div class="o-icon  o-icon--download  o-icon--inline  js-download-csv"><svg class="o-icon__svg"><use xlink:href="#o-icon--download"></use></svg></div>Download
+        </div>
       </div>
     </div>
   </div>
-
-  
 
   <div class="c-dynamic-table">
     <div class="c-dynamic-table__headings">
@@ -47,98 +51,102 @@
 
   <div class="c-modal" data-modal-id="contact-form">
     <div class="c-modal__inner">
-      <form class="js-contact-form" method="post">
+      <form class="c-form  js-contact-form" method="post">
         <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
-        <h3 class="js-contact-form-header  u-text-align--center">View Contact</h3>
-        <input data-form-field="id" type="hidden" class="js-current-contact">
-        <div class="o-button-group  o-button-group--dynamic    u-text-align--center">
-          <button type="button" class="o-button  o-button--update  js-contact-edit">
-            <div class="o-icon  o-icon--edit"><svg class="o-icon__svg"><use xlink:href="#o-icon--edit"></use></svg></div>
-            Edit
-          </button>
-          <button type="button" class="o-button  o-button--destroy  js-contact-destroy">
-            <div class="o-icon  o-icon--trash"><svg class="o-icon__svg"><use xlink:href="#o-icon--trash"></use></svg></div>
-            Delete
-          </button>
-          <br>
-          <button type="button" class="o-button  o-button--save  js-contact-save">
-            <div class="o-icon  o-icon--check"><svg class="o-icon__svg"><use xlink:href="#o-icon--check"></use></svg></div>
-            Save
-          </button>
-          <button type="button" class="o-button  o-button--cancel  js-contact-cancel">
-            Cancel
-          </button>
+        <div class="c-form__header">
+          <h3 class="js-contact-form-header  u-text-align--center">View Contact</h3>
+          <input data-form-field="id" type="hidden" class="js-current-contact">
+          <div class="o-button-group  o-button-group--dynamic    u-text-align--center">
+            <button type="button" class="o-button  o-button--update  js-contact-edit">
+              <div class="o-icon  o-icon--edit"><svg class="o-icon__svg"><use xlink:href="#o-icon--edit"></use></svg></div>
+              Edit
+            </button>
+            <button type="button" class="o-button  o-button--destroy  js-contact-destroy">
+              <div class="o-icon  o-icon--trash"><svg class="o-icon__svg"><use xlink:href="#o-icon--trash"></use></svg></div>
+              Delete
+            </button>
+            <br>
+            <button type="button" class="o-button  o-button--save  js-contact-save">
+              <div class="o-icon  o-icon--check"><svg class="o-icon__svg"><use xlink:href="#o-icon--check"></use></svg></div>
+              Save
+            </button>
+            <button type="button" class="o-button  o-button--cancel  js-contact-cancel">
+              Cancel
+            </button>
+          </div>
         </div>
-        <div class="o-layout">
-          <div class="o-layout__item  u-1/1  u-1/2@mobile">
-            
+        <div class="c-form__body">
+          <div class="o-layout">
+            <div class="o-layout__item  u-1/1  u-1/2@mobile">
+              
     <div class="o-input  ">
       <label class="o-input__label">First Name</label>
       <div class="o-input__field" data-form-field="first_name" contenteditable="false" placeholder="First Name"></div>
     </div>
   
-          </div>
-          <div class="o-layout__item  u-1/1  u-1/2@mobile">
-            
+            </div>
+            <div class="o-layout__item  u-1/1  u-1/2@mobile">
+              
     <div class="o-input  ">
       <label class="o-input__label">Last Name</label>
       <div class="o-input__field" data-form-field="last_name" contenteditable="false" placeholder="Last Name"></div>
     </div>
   
+            </div>
           </div>
-        </div>
-        
+          
     <div class="o-input  ">
       <label class="o-input__label">Company</label>
       <div class="o-input__field" data-form-field="company_name" contenteditable="false" placeholder="Company"></div>
     </div>
   
-        
+          
     <div class="o-input  ">
       <label class="o-input__label">Phone</label>
       <div class="o-input__field" data-form-field="phone" contenteditable="false" placeholder="Phone"></div>
     </div>
   
-        
+          
     <div class="o-input  ">
       <label class="o-input__label">Email</label>
       <div class="o-input__field" data-form-field="email" contenteditable="false" placeholder="Email"></div>
     </div>
   
-        
+          
     <div class="o-input  ">
       <label class="o-input__label">Website</label>
       <div class="o-input__field" data-form-field="url" contenteditable="false" placeholder="Website"></div>
     </div>
   
-        
+          
     <div class="o-input  ">
       <label class="o-input__label">Address</label>
       <div class="o-input__field" data-form-field="address" contenteditable="false" placeholder="Address"></div>
     </div>
   
-        
+          
     <div class="o-input  ">
       <label class="o-input__label">City</label>
       <div class="o-input__field" data-form-field="city" contenteditable="false" placeholder="City"></div>
     </div>
   
-        <div class="o-layout">
-          <div class="o-layout__item  u-1/1  u-1/2@mobile">
-            
+          <div class="o-layout">
+            <div class="o-layout__item  u-1/1  u-1/2@mobile">
+              
     <div class="o-input  ">
       <label class="o-input__label">State</label>
       <div class="o-input__field" data-form-field="state" contenteditable="false" placeholder="State"></div>
     </div>
   
-          </div>
-          <div class="o-layout__item  u-1/1  u-1/2@mobile">
-            
+            </div>
+            <div class="o-layout__item  u-1/1  u-1/2@mobile">
+              
     <div class="o-input  ">
       <label class="o-input__label">Zip</label>
       <div class="o-input__field" data-form-field="zip" contenteditable="false" placeholder="Zip"></div>
     </div>
   
+            </div>
           </div>
         </div>
       </form>

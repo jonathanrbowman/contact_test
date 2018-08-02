@@ -435,4 +435,23 @@ $(function () {
   $(".js-sort-name").on("click", function () {
     contact_app.api.sortContacts(contact_app.api.contacts, "first_name");
   });
+
+  $(".js-show-search").on("click", function () {
+    $(".o-icon-group--dynamic").addClass("is-active");
+    $(".js-contact-search").focus();
+    $(".o-icon-group--dynamic__section__search").addClass("is-active");
+  });
+
+  $(".js-show-more").on("click", function () {
+    $(".o-icon-group--dynamic").addClass("is-active");
+    $(".o-icon-group--dynamic__section__more").addClass("is-active");
+  });
+
+  $(".js-reset-menu").on("click", function () {
+    $(".js-contact-search").blur();
+    $(".o-icon-group--dynamic").removeClass("is-active");
+    $(".js-contact-search").val("");
+    contact_app.api.render(contact_app.api.contacts);
+    $(".o-icon-group--dynamic__section__more, .o-icon-group--dynamic__section__search").removeClass("is-active");
+  });
 });
