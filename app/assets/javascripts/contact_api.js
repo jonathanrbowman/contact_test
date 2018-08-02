@@ -313,10 +313,14 @@ contact_app.api.exportCSV = function(contact_object) {
   }
   data = encodeURI(csv);
 
-  downloadLink = document.createElement('a');
-  $(downloadLink).attr({href: data, download: "contact_export.csv"});
-  downloadLink.click();
-  downloadLink.remove();
+  if ($(window).outerWidth() < 640) {
+    window.open(data, "_blank");
+  } else {
+    downloadLink = document.createElement('a');
+    $(downloadLink).attr({href: data, download: "contact_export.csv"});
+    downloadLink.click();
+    downloadLink.remove();
+  }
 
   contact_app.flashMessage.show("Contacts have been exported!", "success");
 };
