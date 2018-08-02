@@ -6,6 +6,7 @@
 
   .o-icon {
     vertical-align: middle;
+    display: inline-block;
   }
 }
 
@@ -27,6 +28,7 @@
   padding: .25rem;
   position: relative;
   min-height: 33px;
+  display: inline-block;
 
   &:focus {
     border-color: $color_blue;

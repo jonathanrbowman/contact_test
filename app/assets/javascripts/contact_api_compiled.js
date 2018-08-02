@@ -300,7 +300,7 @@ contact_app.api.renderContactForm = function () {
 };
 
 contact_app.api.exportCSV = function (contact_object) {
-  var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+  var result, ctr, keys, columnDelimiter, lineDelimiter, data, downloadLink;
 
   columnDelimiter = contact_object.columnDelimiter || ',';
   lineDelimiter = contact_object.lineDelimiter || '\n';
@@ -331,7 +331,10 @@ contact_app.api.exportCSV = function (contact_object) {
   }
   data = encodeURI(csv);
 
-  window.open(data, '_blank');
+  downloadLink = document.createElement('a');
+  $(downloadLink).attr({ href: data, download: "contact_export.csv" });
+  downloadLink.click();
+  downloadLink.remove();
 
   contact_app.flashMessage.show("Contacts have been exported!", "success");
 };
@@ -448,10 +451,8 @@ $(function () {
   });
 
   $(".js-reset-menu").on("click", function () {
-    $(".js-contact-search").blur();
-    $(".o-icon-group--dynamic").removeClass("is-active");
-    $(".js-contact-search").val("");
+    $(".js-contact-search").blur().val("");
+    $(".c-menu").removeClass("showing-more showing-search");
     contact_app.api.render(contact_app.api.contacts);
-    $(".o-icon-group--dynamic__section__more, .o-icon-group--dynamic__section__search").removeClass("is-active");
   });
 });

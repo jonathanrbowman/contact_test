@@ -26,9 +26,46 @@
 
 .c-menu__section__inner {
   width: 100%;
+  min-height: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+
+  .o-input--search {
+    margin-top: 1.5rem;
+  }
+}
+
+.c-menu__reset {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  .o-icon__svg {
+    fill: $color_red;
+  }
+
+  &:hover {
+    background-color: transparent;
+    transform: translateY(5px);
+
+    .o-icon__svg {
+      fill: $color_red;
+    }
+  }
+}
+
+.c-menu__reset--up {
+ top: 0;
+ bottom: auto;
+ transform: rotate(180deg);
+
+ &:hover {
+   background-color: transparent;
+   transform: rotate(180deg) translateY(5px);
+ }
 }
