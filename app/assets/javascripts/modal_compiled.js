@@ -25,4 +25,9 @@ $(function () {
   $("body").on("click.openModal", ".js-modal-trigger", function () {
     contact_app.modal.open($(this).data("modal-id"));
   });
+
+  $(".c-modal").on("touchend", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  });
 });
