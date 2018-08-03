@@ -426,8 +426,11 @@ $(function() {
 
   $(".js-show-search").on("click", function() {
     $(".c-menu").addClass("showing-search");
+    $("body").prepend("<input class='o-input--false-placeholder' type='text'>");
+    $(".o-input--false-placeholder").focus();
     setTimeout(function() {
-      $(".js-contact-search").focus();
+      $(".js-contact-search").trigger("focus");
+      $(".o-input--false-placeholder").remove();
     }, 300);
   });
 
