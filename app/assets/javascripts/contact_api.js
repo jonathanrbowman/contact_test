@@ -356,9 +356,9 @@ $(function() {
   });
 
   $("body").on("click.closeModal", function(event) {
-    event.preventDefault();
-    event.stopPropagation();
     if ($(event.target).hasClass("c-modal") || $(event.target).closest(".js-close-modal").length > 0) {
+      event.preventDefault();
+      event.stopPropagation();
       contact_app.modal.close(contact_app.api.manageFormState("lock-down"));
     }
   });
