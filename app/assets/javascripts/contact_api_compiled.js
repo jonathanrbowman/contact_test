@@ -13,7 +13,6 @@ contact_app.api.searchResults = [];
 contact_app.api.searchKeys = '';
 contact_app.api.sort = "last_name";
 contact_app.api.order = false;
-contact_app.api.shiftDown = false;
 contact_app.api.isScrolling = false;
 contact_app.api.activeContact = false;
 contact_app.api.rowTemplate = "\n  <div class=\"c-dynamic-table__body__row  js-contact-row\" data-row-id=\"___ID___\">\n    <h5 class=\"c-dynamic-table__body__row__item\">___FIRST_NAME___ ___LAST_NAME___</h5>\n    <h5 class=\"c-dynamic-table__body__row__item\">___COMPANY_NAME___</h5>\n  </div>\n";
@@ -366,7 +365,7 @@ $(function () {
   });
 
   $("body").on("click.selectClear", function (event) {
-    if (!contact_app.api.commandDown && !contact_app.api.shiftDown && $(event.target).closest(".o-input").length <= 0) {
+    if ($(event.target).closest(".o-input").length <= 0) {
       $(".js-contact-row").removeClass("is-selected");
     }
   });
