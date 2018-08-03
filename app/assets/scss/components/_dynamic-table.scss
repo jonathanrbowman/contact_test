@@ -1,11 +1,18 @@
 .c-dynamic-table {
-  height: calc(100% - 196px);
+  height: calc(100% - 158px);
+  position: relative;
 }
 
 .c-dynamic-table__headings {
   font-size: 0;
   border-bottom: 1px solid $color_gray;
   padding: .5rem .75rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $color_white;
+  z-index: 2;
 }
 
 .c-dynamic-table__headings__heading {
@@ -20,8 +27,11 @@
 }
 
 .c-dynamic-table__body {
+  padding-top: 37px;
   height: 100%;
   overflow-y: auto;
+  z-index: 1;
+  position: relative;
   -webkit-overflow-scrolling: touch;
 }
 
