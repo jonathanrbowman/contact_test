@@ -240,8 +240,6 @@ contact_app.api.sortContacts = function (contacts, field) {
     return 0;
   });
 
-  console.log(contacts);
-
   contact_app.api.render(contacts);
 };
 
@@ -459,6 +457,7 @@ $(function () {
   $(".js-reset-menu").on("click", function () {
     $(".js-contact-search").blur().val("");
     $(".c-menu").removeClass("showing-more showing-search");
+    contact_app.api.searchResults = [];
     contact_app.api.render(contact_app.api.contacts);
   });
 });
