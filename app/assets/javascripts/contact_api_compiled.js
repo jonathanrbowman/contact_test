@@ -360,7 +360,7 @@ $(function () {
     contact_app.api.sortContacts(contacts, sortField);
   });
 
-  $("body").on("touchend.selectContact click.selectContact", ".js-contact-row", function (event) {
+  $("body").on("click.selectContact", ".js-contact-row", function (event) {
     if (!contact_app.api.isScrolling) {
       contact_app.modal.open("contact-form", contact_app.api.manageFormState("viewing"));
       contact_app.api.renderContactForm($(this).data("row-id"));
