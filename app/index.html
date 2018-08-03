@@ -176,11 +176,11 @@
       <h3 class="js-contact-form-header  u-text-align--center  u-no-margin">Upload Contacts</h3>
       <p class="u-text-align--center">You can upload a CSV file with contact info.</p>
       <div class="c-upload-box">
-        <label for="contact-upload" class="c-upload-box__label">
+        <label for="contact-upload" class="c-upload-box__label  js-upload-box">
           <div class="c-upload-box__icon  o-icon  o-icon--upload"><svg class="o-icon__svg"><use xlink:href="#o-icon--upload"></use></svg></div>
           <h5 class="o-heading">Click/Tap or Drag File Here</h5>
         </label>
-        <input id="contact-upload" type="file" name="contact_upload" class="c-upload-box__input">
+        <input id="contact-upload" multiple="false" type="file" name="contact_upload" class="c-upload-box__input">
       </div>
     </div>
   </div>
@@ -247,8 +247,10 @@
     </svg>
 
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/papaparse/papaparse.min.js"></script>
     <script type="text/javascript" src="assets/javascripts/flash_message_compiled.js"></script>
     <script type="text/javascript" src="assets/javascripts/modal_compiled.js"></script>
+    <script type="text/javascript" src="assets/javascripts/upload_box_compiled.js"></script>
     <script type="text/javascript" src="assets/javascripts/contact_api_compiled.js"></script>
   </body>
 </html>

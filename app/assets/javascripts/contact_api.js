@@ -50,19 +50,11 @@ contact_app.api.list = function({event, page = 1, sort = "last_name", desc = fal
   });
 };
 
-contact_app.api.create = function() {
-  var form_data = $(".js-contact-form").serialize();
-  $(".js-contact-form").find(".o-input__field").each(function() {
-    var form_field_value = $(this).text();
-    if ($(this).data("form-field") === "url") {
-      if (!$(this).text().startsWith("http") && !$(this).text() === "") {
-        form_field_value = "http://" + $(this).text();
-      }
-    }
-    form_data = form_data + "&" + $(this).data("form-field") + "=" + form_field_value;
-  });
-
+contact_app.api.create = function(form_data) {
   $(".o-button").prop("disabled", true);
+
+// working here
+  var uploadsNeeded = form_data.length;
 
   $.ajax({
     url: contact_app.api.base_url + "contact",
@@ -363,7 +355,7 @@ $(function() {
     }
   });
 
-  $("body").on("touchstart.closeModal mousedown.closeModal", function(event) {
+  $("body").on("touchend.closeModal click.closeModal", function(event) {
     event.stopPropagation();
     if ($(event.target).hasClass("c-modal") || $(event.target).closest(".js-close-modal").length > 0) {
       contact_app.modal.close(contact_app.api.manageFormState("lock-down"));
@@ -388,7 +380,13 @@ $(function() {
 
   $(".js-contact-save").on("click.save", function() {
     if ($(this).closest(".c-modal.new-entry").length > 0) {
-      contact_app.api.create();
+      var form_data;
+      $(".js-contact-form").find(".o-input__field").each(function() {
+        var form_field_value = $(this).text();
+        form_data = form_data + "&" + $(this).data("form-field") + "=" + form_field_value;
+      });
+
+      contact_app.api.create(form_data);
     } else {
       contact_app.api.update();
     }

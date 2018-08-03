@@ -23,7 +23,7 @@
   position: relative;
   box-shadow: 0 0 4px transparent;
 
-  &:hover {
+  &:hover, &.is-active {
     box-shadow: 0 0 10px $color_blue;
 
     .c-upload-box__icon {

@@ -1894,9 +1894,9 @@ table {
   cursor: pointer;
   position: relative;
   box-shadow: 0 0 4px transparent; }
-  .c-upload-box__label:hover {
+  .c-upload-box__label:hover, .c-upload-box__label.is-active {
     box-shadow: 0 0 10px #0984e3; }
-    .c-upload-box__label:hover .c-upload-box__icon {
+    .c-upload-box__label:hover .c-upload-box__icon, .c-upload-box__label.is-active .c-upload-box__icon {
       transform: scale(1.2); }
   @media (min-width: 61.25em) {
     .c-upload-box__label {
