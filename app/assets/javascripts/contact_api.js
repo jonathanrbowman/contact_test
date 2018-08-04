@@ -315,7 +315,10 @@ contact_app.api.exportCSV = function(contact_object) {
 };
 
 // init with loading the contacts into memory
-$(window).on("load", contact_app.api.list);
+$(window).on("load", function() {
+  contact_app.api.list();
+  contact_app.flashMessage.show("Welcome!", "success");
+});
 document.addEventListener("touchstart", function() {}, true);
 
 $(function() {
