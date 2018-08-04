@@ -1664,12 +1664,11 @@ table {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.9);
   z-index: 2; }
 
 .c-dynamic-table__headings__heading {
   width: 50%;
-  background-color: rgba(255, 255, 255, 0.95);
   display: inline-block;
   vertical-align: middle;
   font-size: 1rem;
@@ -1680,12 +1679,6 @@ table {
   z-index: 2; }
 
 .c-dynamic-table__body {
-  padding-top: 37px;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 1;
-  position: relative;
-  -webkit-overflow-scrolling: touch;
   padding-top: 194px;
   height: 100vh;
   max-height: 100%;
@@ -1735,7 +1728,7 @@ table {
 
 .c-app-header {
   padding: .5rem;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.9);
   z-index: 2;
   position: relative; }
 
