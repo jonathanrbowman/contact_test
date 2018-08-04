@@ -4,6 +4,84 @@
     {
       "icon": {
         "paths": [
+          "M426 726l282-282-60-60-222 220-88-88-60 60zM826 428c110 8 198 100 198 212 0 118-96 214-214 214h-554c-142 0-256-114-256-256 0-132 100-240 228-254 54-102 160-174 284-174 156 0 284 110 314 258z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "cloud_done"
+        ],
+        "defaultCode": 58047,
+        "grid": 24
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "cloud_done",
+        "id": 25,
+        "order": 89,
+        "name": "cloud-ok",
+        "prevSize": 24
+      },
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M810 768c70 0 128-58 128-128s-58-128-128-128h-64v-22c0-130-104-234-234-234-76 0-144 36-188 94 108 30 188 130 188 248h-86c0-94-76-172-170-172s-170 78-170 172 76 170 170 170h554zM826 428c110 8 198 100 198 212 0 118-96 214-214 214h-554c-142 0-256-114-256-256 0-132 100-240 228-254 54-102 160-174 284-174 156 0 284 110 314 258z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "filter_drama"
+        ],
+        "defaultCode": 58333,
+        "grid": 24
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "filter_drama",
+        "id": 26,
+        "order": 90,
+        "prevSize": 24,
+        "name": "cloud-outline"
+      },
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 1
+    },
+    {
+      "icon": {
+        "paths": [
+          "M682 726h128l-170 170-170-170h128v-300h84v300zM384 128l170 170h-128v300h-84v-300h-128z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "import_export"
+        ],
+        "defaultCode": 57539,
+        "grid": 24
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "import_export",
+        "id": 24,
+        "order": 86,
+        "prevSize": 24,
+        "name": "import-export"
+      },
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 2
+    },
+    {
+      "icon": {
+        "paths": [
           "M128 554v-84h512v84h-512zM128 256h768v86h-768v-86zM128 768v-86h256v86h-256z"
         ],
         "attrs": [],
@@ -25,7 +103,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 0
+      "iconIdx": 3
     },
     {
       "icon": {
@@ -51,7 +129,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 1
+      "iconIdx": 4
     },
     {
       "icon": {
@@ -77,7 +155,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 2
+      "iconIdx": 5
     },
     {
       "icon": {
@@ -103,7 +181,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 3
+      "iconIdx": 6
     },
     {
       "icon": {
@@ -129,7 +207,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 4
+      "iconIdx": 7
     },
     {
       "icon": {
@@ -155,7 +233,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 5
+      "iconIdx": 8
     },
     {
       "icon": {
@@ -181,7 +259,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 6
+      "iconIdx": 9
     },
     {
       "icon": {
@@ -207,7 +285,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 7
+      "iconIdx": 10
     },
     {
       "icon": {
@@ -233,7 +311,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 8
+      "iconIdx": 11
     },
     {
       "icon": {
@@ -259,7 +337,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 9
+      "iconIdx": 12
     },
     {
       "icon": {
@@ -285,7 +363,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 10
+      "iconIdx": 13
     },
     {
       "icon": {
@@ -311,7 +389,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 11
+      "iconIdx": 14
     },
     {
       "icon": {
@@ -337,7 +415,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 12
+      "iconIdx": 15
     },
     {
       "icon": {
@@ -363,7 +441,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 13
+      "iconIdx": 16
     }
   ],
   "height": 1024,

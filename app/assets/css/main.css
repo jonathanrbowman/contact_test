@@ -1477,8 +1477,7 @@ table {
   margin-bottom: 1rem;
   display: inline-block; }
   .o-input .o-icon {
-    vertical-align: middle;
-    display: inline-block; }
+    vertical-align: middle; }
 
 .o-input__label {
   font-size: .85rem;
@@ -1501,7 +1500,7 @@ table {
   padding: .25rem;
   position: relative;
   min-height: 33px;
-  display: inline-block; }
+  color: #2d3436; }
   .o-input__field:focus {
     border-color: #0984e3; }
   .o-input--has-icon .o-input__field {
@@ -1511,23 +1510,14 @@ table {
     display: block;
     font-style: italic;
     color: #aaaaaa; }
-  .o-input__field[contenteditable="false"] {
+  .o-input__field[contenteditable="false"], .o-input__field[disabled] {
     border-color: #f7f7f7;
     border-style: dashed; }
 
-.o-input--search {
-  width: 100%;
-  max-width: 400px; }
-
 .o-input--false-placeholder {
-  position: absolute;
-  top: 0;
-  height: 0;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  display: block;
-  opacity: 0; }
+  position: fixed;
+  top: -999px;
+  left: -9999px; }
 
 .o-icon {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);

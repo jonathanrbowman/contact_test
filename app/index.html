@@ -15,6 +15,8 @@
 
   
 
+  
+
   <div class="c-app-header">
     <h5 class="o-heading  u-text-align--center  u-no-margin"><small>Assistant (to the)</small></h5>
     <h3 class="o-heading  o-heading--page-title  u-text-align--center  u-uppercase">Contact Manager</h3>
@@ -42,7 +44,7 @@
             <div class="o-icon  o-icon--button  o-icon--search  o-icon--inline  js-show-search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
             <div class="o-icon  o-icon--button  o-icon--user-add  o-icon--inline  js-add-contact"><svg class="o-icon__svg"><use xlink:href="#o-icon--user-add"></use></svg></div>
             <div class="o-icon  o-icon--button  o-icon--sort  o-icon--inline  js-modal-trigger" data-modal-id="sort"><svg class="o-icon__svg"><use xlink:href="#o-icon--sort"></use></svg></div>
-            <div class="o-icon  o-icon--button  o-icon--more  o-icon--inline  js-show-more"><svg class="o-icon__svg"><use xlink:href="#o-icon--more"></use></svg></div>
+            <div class="o-icon  o-icon--button  o-icon--cloud-outline  o-icon--inline  js-show-file-manager"><svg class="o-icon__svg"><use xlink:href="#o-icon--cloud-outline"></use></svg></div>
           </div>
         </div>
 
@@ -98,7 +100,7 @@
           <div class="o-layout">
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
               
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">First Name *</label>
       <div class="o-input__field" data-form-field="first_name" contenteditable="false" placeholder="First Name *"></div>
     </div>
@@ -106,7 +108,7 @@
             </div>
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
               
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">Last Name</label>
       <div class="o-input__field" data-form-field="last_name" contenteditable="false" placeholder="Last Name"></div>
     </div>
@@ -114,53 +116,54 @@
             </div>
           </div>
           
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">Company</label>
       <div class="o-input__field" data-form-field="company_name" contenteditable="false" placeholder="Company"></div>
     </div>
   
           
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">Phone</label>
       <div class="o-input__field" data-form-field="phone" contenteditable="false" placeholder="Phone"></div>
     </div>
   
           
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">Email</label>
       <div class="o-input__field" data-form-field="email" contenteditable="false" placeholder="Email"></div>
     </div>
   
           
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">Website</label>
       <div class="o-input__field" data-form-field="url" contenteditable="false" placeholder="Website"></div>
     </div>
   
           
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">Address</label>
       <div class="o-input__field" data-form-field="address" contenteditable="false" placeholder="Address"></div>
     </div>
   
           
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">City</label>
       <div class="o-input__field" data-form-field="city" contenteditable="false" placeholder="City"></div>
     </div>
   
           <div class="o-layout">
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
-              
-    <div class="o-input  ">
-      <label class="o-input__label">State</label>
-      <div class="o-input__field" data-form-field="state" contenteditable="false" placeholder="State"></div>
-    </div>
-  
+              <div class="o-input  o-input--select">
+                <label class="o-input__label">State</label>
+                <select class="o-input__field" name="state" disabled data-form-field="state">
+                  <option value="">None Selected</option>
+                  <option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option>
+                </select>
+              </div>
             </div>
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
               
-    <div class="o-input  ">
+    <div class="o-input  o-input--text  ">
       <label class="o-input__label">Zip</label>
       <div class="o-input__field" data-form-field="zip" contenteditable="false" placeholder="Zip"></div>
     </div>
@@ -190,7 +193,15 @@
   <div class="c-modal" data-modal-id="sort">
     <div class="c-modal__inner">
       <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
-      <h3 class="js-contact-form-header  u-text-align--center  u-no-margin">Sort By</h3>
+      <h3 class="js-contact-form-header  u-text-align--center  u-no-margin">Sorting</h3>
+      <div class="o-input  o-input--select">
+        <label class="o-input__label">Field to Sort By</label>
+        <select class="o-input__field  js-sort">
+          <option value="first_name">First Name</option>
+          <option value="last_name" selected>Last Name</option>
+          <option value="company_name">Company Name</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -202,6 +213,18 @@
     
     <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
+    <symbol id="o-icon--cloud-ok" viewBox="0 0 24 24">
+    <title>cloud-ok</title>
+    <path d="M9.984 17.016l6.609-6.609-1.406-1.406-5.203 5.156-2.063-2.063-1.406 1.406zM19.359 10.031c2.578 0.188 4.641 2.344 4.641 4.969 0 2.766-2.25 5.016-5.016 5.016h-12.984c-3.328 0-6-2.672-6-6 0-3.094 2.344-5.625 5.344-5.953 1.266-2.391 3.75-4.078 6.656-4.078 3.656 0 6.656 2.578 7.359 6.047z"></path>
+    </symbol>
+    <symbol id="o-icon--cloud-outline" viewBox="0 0 24 24">
+    <title>cloud-outline</title>
+    <path d="M18.984 18c1.641 0 3-1.359 3-3s-1.359-3-3-3h-1.5v-0.516c0-3.047-2.438-5.484-5.484-5.484-1.781 0-3.375 0.844-4.406 2.203 2.531 0.703 4.406 3.047 4.406 5.813h-2.016c0-2.203-1.781-4.031-3.984-4.031s-3.984 1.828-3.984 4.031 1.781 3.984 3.984 3.984h12.984zM19.359 10.031c2.578 0.188 4.641 2.344 4.641 4.969 0 2.766-2.25 5.016-5.016 5.016h-12.984c-3.328 0-6-2.672-6-6 0-3.094 2.344-5.625 5.344-5.953 1.266-2.391 3.75-4.078 6.656-4.078 3.656 0 6.656 2.578 7.359 6.047z"></path>
+    </symbol>
+    <symbol id="o-icon--import-export" viewBox="0 0 24 24">
+    <title>import-export</title>
+    <path d="M15.984 17.016h3l-3.984 3.984-3.984-3.984h3v-7.031h1.969v7.031zM9 3l3.984 3.984h-3v7.031h-1.969v-7.031h-3z"></path>
+    </symbol>
     <symbol id="o-icon--sort" viewBox="0 0 24 24">
     <title>sort</title>
     <path d="M3 12.984v-1.969h12v1.969h-12zM3 6h18v2.016h-18v-2.016zM3 18v-2.016h6v2.016h-6z"></path>

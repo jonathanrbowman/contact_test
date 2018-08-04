@@ -17,6 +17,12 @@ contact_app.api.rowTemplate = `
     <h5 class="c-dynamic-table__body__row__item">___COMPANY_NAME___</h5>
   </div>
 `;
+contact_app.api.rowTemplateReverse = `
+<div class="c-dynamic-table__body__row  js-contact-row" data-row-id="___ID___">
+  <h5 class="c-dynamic-table__body__row__item">___LAST_NAME___, ___FIRST_NAME___</h5>
+  <h5 class="c-dynamic-table__body__row__item">___COMPANY_NAME___</h5>
+</div>
+`;
 
 // when you only have the quantity of entries we're dealing with, I'd rather just load them into memory instead of making more network requests
 contact_app.api.list = function({event, page = 1, sort = "last_name", desc = false, limit = 9999}) {
@@ -63,7 +69,7 @@ contact_app.api.create = function(form_data) {
       request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
     },
     success: function(data) {
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       $(".c-modal").removeClass("is-active new-entry");
       if (contact_app.api.searchResults.length > 0) {
@@ -87,8 +93,12 @@ contact_app.api.update = function() {
   if (contact_app.api.activeContact) {
     var form_data = $(".js-contact-form").serialize();
     $(".js-contact-form").find(".o-input__field").each(function() {
-      var form_field_value = $(this).text();
-      if ($(this).data("form-field") == "url") {
+      if ($(this).closest(".o-input--select").length > 0) {
+        var form_field_value = $(this).val();
+      } else {
+        var form_field_value = $(this).text();
+      }
+      if ($(this).data("form-field") === "url") {
         if (!$(this).text().startsWith("http")) {
           form_field_value = "http://" + $(this).text();
         }
@@ -106,7 +116,7 @@ contact_app.api.update = function() {
         request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
       },
       success: function(data) {
-        $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+        $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
         $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
         if (contact_app.api.searchResults.length > 0) {
           contact_app.api.filter(contact_app.api.searchResults);
@@ -140,7 +150,7 @@ contact_app.api.destroy = function() {
         request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
       },
       success: function(data) {
-        $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+        $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
         $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
         $(".c-modal").removeClass("is-active");
         contact_app.api.list(event);
@@ -171,9 +181,15 @@ contact_app.api.render = function(contacts) {
   var contact_array = [];
 
   if (contacts.length > 0) {
-    $.each(contacts, function() {
-      contact_array.push(contact_app.api.rowTemplate.replace("___FIRST_NAME___", this.first_name).replace("___LAST_NAME___", this.last_name).replace("___COMPANY_NAME___", this.company_name).replace("___ID___", this.id));
-    });
+    if (contact_app.api.sort === "last_name") {
+      $.each(contacts, function() {
+        contact_array.push(contact_app.api.rowTemplateReverse.replace("___FIRST_NAME___", this.first_name).replace("___LAST_NAME___", this.last_name).replace("___COMPANY_NAME___", this.company_name).replace("___ID___", this.id));
+      });
+    } else {
+      $.each(contacts, function() {
+        contact_array.push(contact_app.api.rowTemplate.replace("___FIRST_NAME___", this.first_name).replace("___LAST_NAME___", this.last_name).replace("___COMPANY_NAME___", this.company_name).replace("___ID___", this.id));
+      });
+    }
     $(".c-dynamic-table__body").append(contact_array);
   } else {
     $(".c-dynamic-table__body").append("<h5 class='o-heading  o-heading--thin  u-italicize'>No results found.</h5>");
@@ -242,15 +258,16 @@ contact_app.api.manageFormState = function(context) {
     case "new-entry":
       $(".c-modal").addClass("new-entry");
       $(".js-contact-form-header").text("New Contact");
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", true).prop("disabled", false);
       break;
     case "editing":
       break;
     case "lock-down":
       contact_app.api.activeContact = false;
-      $(".js-contact-form").find(".o-input__field").html("");
+      $(".js-contact-form").find(".o-input--text .o-input__field").html("");
+      $(".js-contact-form").find(".o-input--select .o-input__field").val("");
       $(".c-modal__inner").scrollTop(0);
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       break;
   }
@@ -261,8 +278,10 @@ contact_app.api.renderContactForm = function(contactID = false) {
     var contact = contact_app.api.searchObject(contactID, contact_app.api.contacts)
     contact_app.api.activeContact = contactID;
     Object.keys(contact).forEach(function(key) {
-      if (key == "id") {
+      if (key === "id") {
         $(".js-contact-form").find("input[data-form-field='id']").val(contact[key]);
+      } else if (key === "state") {
+        $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").val(contact[key]);
       } else {
         $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
       }
@@ -328,19 +347,19 @@ $(function() {
     contact_app.api.search(searchValue);
   });
 
-  $(".js-sort").on("click.sort", function(event) {
-    var sortField = $(this).data("sort-field");
-    var contacts = contact_app.api.searchResults.length > 0 ? contact_app.api.searchResults : contact_app.api.contacts;
-
-    if (contact_app.api.sort == sortField) {
-      contact_app.api.order = !contact_app.api.order;
-    } else {
-      contact_app.api.sort = sortField;
-      contact_app.api.order = false;
-    }
-
-    contact_app.api.sortContacts(contacts, sortField);
-  });
+  // $(".js-sort").on("click.sort", function(event) {
+  //   var sortField = $(this).data("sort-field");
+  //   var contacts = contact_app.api.searchResults.length > 0 ? contact_app.api.searchResults : contact_app.api.contacts;
+  //
+  //   if (contact_app.api.sort == sortField) {
+  //     contact_app.api.order = !contact_app.api.order;
+  //   } else {
+  //     contact_app.api.sort = sortField;
+  //     contact_app.api.order = false;
+  //   }
+  //
+  //   contact_app.api.sortContacts(contacts, sortField);
+  // });
 
   $("body").on("click.selectContact", ".js-contact-row", function(event) {
     if (!contact_app.api.isScrolling) {
@@ -364,12 +383,12 @@ $(function() {
   });
 
   $(".js-contact-edit").on("click", function() {
-    $(".js-contact-form").find(".o-input__field").attr("contenteditable", true);
+    $(".js-contact-form").find(".o-input__field").attr("contenteditable", true).prop("disabled", false);
     $(this).closest(".o-button-group--dynamic").addClass("alt-showing");
   });
 
   $(".js-contact-cancel").on("click", function() {
-    $(".js-contact-form").find(".o-input__field").attr("contenteditable", false);
+    $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
     if ($(this).closest(".new-entry").length > 0) {
       contact_app.modal.close(contact_app.api.manageFormState("lock-down"));
     } else {
@@ -420,9 +439,9 @@ $(function() {
     contact_app.api.exportCSV(contact_app.api.contacts);
   });
 
-  $(".js-sort-name").on("click", function() {
-    contact_app.api.sortContacts(contact_app.api.contacts, "first_name");
-  });
+  // $(".js-sort-name").on("click", function() {
+  //   contact_app.api.sortContacts(contact_app.api.contacts, "first_name");
+  // });
 
   $(".js-show-search").on("click", function() {
     $(".c-menu").addClass("showing-search");
@@ -434,7 +453,7 @@ $(function() {
     }, 300);
   });
 
-  $(".js-show-more").on("click", function() {
+  $(".js-show-file-manager").on("click", function() {
     $(".c-menu").addClass("showing-more");
   });
 
@@ -443,6 +462,12 @@ $(function() {
     $(".c-menu").removeClass("showing-more showing-search");
     contact_app.api.searchResults = [];
     contact_app.api.render(contact_app.api.contacts);
+  });
+
+  $(".js-sort").on("change", function() {
+    contact_app.api.sort = $(this).val();
+    contact_app.api.sortContacts(contact_app.api.contacts, contact_app.api.sort);
+    contact_app.modal.close();
   });
 
 });

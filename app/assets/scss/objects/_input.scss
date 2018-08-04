@@ -6,7 +6,6 @@
 
   .o-icon {
     vertical-align: middle;
-    display: inline-block;
   }
 }
 
@@ -28,7 +27,7 @@
   padding: .25rem;
   position: relative;
   min-height: 33px;
-  display: inline-block;
+  color: $color_text;
 
   &:focus {
     border-color: $color_blue;
@@ -45,24 +44,14 @@
     color: $color_gray;
   }
 
-  &[contenteditable="false"] {
+  &[contenteditable="false"], &[disabled] {
     border-color: $color_gray_lightest;
     border-style: dashed;
   }
 }
 
-.o-input--search {
-  width: 100%;
-  max-width: 400px;
-}
-
 .o-input--false-placeholder {
-  position: absolute;
-  top: 0;
-  height: 0;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  display: block;
-  opacity: 0;
+  position: fixed;
+  top: -999px;
+  left: -9999px;
 }
