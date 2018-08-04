@@ -11,12 +11,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: $color_white;
+  background-color: rgba($color_white, .95);
   z-index: 2;
 }
 
 .c-dynamic-table__headings__heading {
   width: 50%;
+  background-color: rgba($color_white, .95);
   display: inline-block;
   vertical-align: middle;
   font-size: 1rem;
@@ -24,6 +25,7 @@
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
+  z-index: 2;
 }
 
 .c-dynamic-table__body {
@@ -33,6 +35,20 @@
   z-index: 1;
   position: relative;
   -webkit-overflow-scrolling: touch;
+
+  padding-top: 194px;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1;
+  position: fixed;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  right: 0;
+  max-width: 800px;
+  margin: auto;
 }
 
 .c-dynamic-table__body__row {
@@ -43,7 +59,7 @@
   transform: scale(.98);
 
   &:nth-child(even) {
-    background-color: rgba($color_black, .02);
+    background-color: rgba($color_blue, .05);
   }
 
   &:hover, &.is-selected {

@@ -35,6 +35,7 @@
           <div class="c-menu__section__inner">
             <div class="o-icon  o-icon--button  o-icon--search  o-icon--inline  js-show-search"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
             <div class="o-icon  o-icon--button  o-icon--user-add  o-icon--inline  js-add-contact"><svg class="o-icon__svg"><use xlink:href="#o-icon--user-add"></use></svg></div>
+            <div class="o-icon  o-icon--button  o-icon--sort  o-icon--inline  js-modal-trigger" data-modal-id="sort"><svg class="o-icon__svg"><use xlink:href="#o-icon--sort"></use></svg></div>
             <div class="o-icon  o-icon--button  o-icon--more  o-icon--inline  js-show-more"><svg class="o-icon__svg"><use xlink:href="#o-icon--more"></use></svg></div>
           </div>
         </div>
@@ -128,6 +129,15 @@
         <input id="contact-upload" multiple="false" type="file" name="contact_upload" class="c-upload-box__input">
       </div>
     </div>
+  </div>
+
+  <div class="c-modal" data-modal-id="sort">
+    <div class="c-modal__inner">
+      <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
+      <h3 class="js-contact-form-header  u-text-align--center  u-no-margin">Sort By</h3>
+    </div>
+  </div>
+
   </div>
 
 {% endblock %}

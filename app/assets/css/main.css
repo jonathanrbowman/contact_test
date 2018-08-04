@@ -1664,18 +1664,20 @@ table {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.95);
   z-index: 2; }
 
 .c-dynamic-table__headings__heading {
   width: 50%;
+  background-color: rgba(255, 255, 255, 0.95);
   display: inline-block;
   vertical-align: middle;
   font-size: 1rem;
   text-align: left;
   font-size: 1rem;
   font-weight: 600;
-  margin: 0; }
+  margin: 0;
+  z-index: 2; }
 
 .c-dynamic-table__body {
   padding-top: 37px;
@@ -1683,7 +1685,20 @@ table {
   overflow-y: auto;
   z-index: 1;
   position: relative;
-  -webkit-overflow-scrolling: touch; }
+  -webkit-overflow-scrolling: touch;
+  padding-top: 194px;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1;
+  position: fixed;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  right: 0;
+  max-width: 800px;
+  margin: auto; }
 
 .c-dynamic-table__body__row {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -1696,7 +1711,7 @@ table {
   cursor: pointer;
   transform: scale(0.98); }
   .c-dynamic-table__body__row:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.02); }
+    background-color: rgba(9, 132, 227, 0.05); }
   .c-dynamic-table__body__row:hover, .c-dynamic-table__body__row.is-selected {
     background-color: #0984e3;
     color: #ffffff;
@@ -1718,7 +1733,10 @@ table {
   margin: 0; }
 
 .c-app-header {
-  padding: .5rem; }
+  padding: .5rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 2;
+  position: relative; }
 
 .c-modal {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
