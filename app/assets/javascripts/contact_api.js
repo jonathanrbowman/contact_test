@@ -25,7 +25,7 @@ contact_app.api.rowTemplateReverse = `
 `;
 
 // when you only have the quantity of entries we're dealing with, I'd rather just load them into memory instead of making more network requests
-contact_app.api.list = function({event, page = 1, sort = "last_name", desc = false, limit = 9999}) {
+contact_app.api.list = function({event, page = 1, sort = contact_app.api.sort, desc = contact_app.api.order, limit = 9999}) {
   contact_app.api.contacts = [];
   contact_app.api.searchResults = [];
 
@@ -225,22 +225,22 @@ contact_app.api.search = function(value = false) {
   }
 };
 
-contact_app.api.sortContacts = function(contacts, field) {
-  contacts.sort(function(a, b) {
-    var nameA = a[field].toLowerCase(), nameB = b[field].toLowerCase();
-
-    if (nameA < nameB) {
-      return contact_app.api.order ? 1 : -1;
-    }
-    if (nameA > nameB) {
-      return contact_app.api.order ? -1 : 1;
-    }
-
-    return 0;
-  });
-
-  contact_app.api.render(contacts);
-};
+// contact_app.api.sortContacts = function(contacts, field) {
+//   contacts.sort(function(a, b) {
+//     var nameA = a[field].toLowerCase(), nameB = b[field].toLowerCase();
+//
+//     if (nameA < nameB) {
+//       return contact_app.api.order ? 1 : -1;
+//     }
+//     if (nameA > nameB) {
+//       return contact_app.api.order ? -1 : 1;
+//     }
+//
+//     return 0;
+//   });
+//
+//   contact_app.api.render(contacts);
+// };
 
 contact_app.api.searchObject = function(contactID, array) {
   for (var i = 0; i < array.length; i++) {
@@ -253,11 +253,11 @@ contact_app.api.searchObject = function(contactID, array) {
 contact_app.api.manageFormState = function(context) {
   switch (context) {
     case "viewing":
-      $(".js-contact-form-header").text("View Contact");
+      $(".js-contact-form .c-modal__inner__header").text("View Contact");
       break;
     case "new-entry":
       $(".c-modal").addClass("new-entry");
-      $(".js-contact-form-header").text("New Contact");
+      $(".js-contact-form .c-modal__inner__header").text("New Contact");
       $(".js-contact-form").find(".o-input__field").attr("contenteditable", true).prop("disabled", false);
       break;
     case "editing":
@@ -464,9 +464,16 @@ $(function() {
     contact_app.api.render(contact_app.api.contacts);
   });
 
-  $(".js-sort").on("change", function() {
+  $(".js-sort-field").on("change", function() {
     contact_app.api.sort = $(this).val();
-    contact_app.api.sortContacts(contact_app.api.contacts, contact_app.api.sort);
+  });
+
+  $(".js-sort-order").on("change", function() {
+    contact_app.api.order = $(this).val();
+  });
+
+  $(".js-sort").on("click", function(event) {
+    contact_app.api.list(event);
     contact_app.modal.close();
   });
 
