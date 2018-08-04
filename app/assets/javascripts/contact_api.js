@@ -266,9 +266,9 @@ contact_app.api.manageFormState = function(context) {
       contact_app.api.activeContact = false;
       $(".js-contact-form").find(".o-input--text .o-input__field").html("");
       $(".js-contact-form").find(".o-input--select .o-input__field").val("");
-      $(".c-modal__inner").scrollTop(0);
       $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+      $(".c-form__body").scrollTop(0);
       break;
   }
 };
