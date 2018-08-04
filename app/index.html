@@ -194,22 +194,30 @@
     <div class="c-modal__inner">
       <div class="o-icon  o-icon--close  js-close-modal"><svg class="o-icon__svg"><use xlink:href="#o-icon--close"></use></svg></div>
       <h3 class="c-modal__inner__header">Sort Options</h3>
-      <div class="o-input  o-input--select">
-        <label class="o-input__label">Field to Sort By</label>
-        <select class="o-input__field  js-sort-field">
-          <option value="first_name">First Name</option>
-          <option value="last_name" selected>Last Name</option>
-          <option value="company_name">Company Name</option>
-        </select>
+      <div class="o-layout">
+        <div class="o-layout__item  u-1/2@tablet">
+          <div class="o-input  o-input--select">
+            <label class="o-input__label">Field to Sort By</label>
+            <select class="o-input__field  js-sort-field">
+              <option value="first_name">First Name</option>
+              <option value="last_name" selected>Last Name</option>
+              <option value="company_name">Company Name</option>
+            </select>
+          </div>
+        </div>
+        <div class="o-layout__item  u-1/2@tablet">
+          <div class="o-input  o-input--select">
+            <label class="o-input__label">Sort Order</label>
+            <select class="o-input__field  js-sort-order">
+              <option value="false" selected>Ascending</option>
+              <option value="true">Descending</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="o-input  o-input--select">
-        <label class="o-input__label">Sort Order</label>
-        <select class="o-input__field  js-sort-order">
-          <option value="false" selected>Ascending</option>
-          <option value="true">Descending</option>
-        </select>
+      <div class="u-text-align--center">
+        <button class="o-button  js-sort">Apply Selection</button>
       </div>
-      <button class="o-button  js-sort">Apply</button>
     </div>
   </div>
 
