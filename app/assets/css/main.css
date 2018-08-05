@@ -1467,7 +1467,8 @@ table {
   margin-bottom: .5rem; }
 
 .o-heading--footer {
-  margin: 2rem 0; }
+  margin: 0;
+  padding: 2rem 0; }
 
 .o-input {
   width: 100%;
