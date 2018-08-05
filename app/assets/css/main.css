@@ -1850,8 +1850,7 @@ table {
 
 .c-form {
   position: relative;
-  height: 600px;
-  max-height: 600px; }
+  height: 400px; }
 
 .c-form__header {
   padding-bottom: 1.5rem; }
