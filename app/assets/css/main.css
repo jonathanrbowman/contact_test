@@ -1759,7 +1759,8 @@ table {
     position: absolute;
     top: .5rem;
     right: .5rem;
-    cursor: pointer; }
+    cursor: pointer;
+    z-index: 3; }
     .c-modal__inner .o-icon--close:hover {
       background-color: #f1f1f1; }
     .c-modal__inner .o-icon--close svg {

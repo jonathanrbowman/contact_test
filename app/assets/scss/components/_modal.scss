@@ -50,6 +50,7 @@
     top: .5rem;
     right: .5rem;
     cursor: pointer;
+    z-index: 3;
 
     &:hover {
       background-color: $color_gray_lighter;
