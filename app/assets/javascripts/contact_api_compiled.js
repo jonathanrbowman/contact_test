@@ -86,6 +86,8 @@ contact_app.api.list = function () {
 contact_app.api.create = function (formData) {
   $(".o-button").prop("disabled", true);
 
+  console.log(formData);
+
   $.ajax({
     url: contact_app.api.base_url + "contact",
     method: "POST",
@@ -206,6 +208,10 @@ contact_app.api.validate = function (formData, callback) {
     if (formData[key].value != null && formData[key].value.length > 0) {
       formData[key].value = formData[key].value.trim();
     }
+    // weird edge cases where the data actually got saved as 'null' string, so sanitizing here
+    if (formData[key].value == null || formData[key].value == "null") {
+      formData[key].value = "";
+    }
     switch (formData[key].name) {
       case "url":
         if (formData[key].value != null && formData[key].value.length > 0 && !formData[key].value.startsWith("http")) {
@@ -233,8 +239,12 @@ contact_app.api.validate = function (formData, callback) {
   if (dataValid) {
     callback(formData);
   } else {
-    contact_app.flashMessage.show(errorMessage, "error");
-    return false;
+    if (!contact_app.api.multipleTotal) {
+      contact_app.flashMessage.show(errorMessage, "error");
+      return false;
+    } else {
+      contact_app.api.multipleErrors++;
+    }
   }
 };
 
@@ -379,7 +389,12 @@ contact_app.api.exportCSV = function (contactObject) {
       if (iterator > 0) {
         result += columnDelimiter;
       }
-      result += contact[key];
+
+      if (contact[key] == null || contact[key] == "null") {
+        result += "";
+      } else {
+        result += contact[key];
+      }
       iterator++;
     });
     result += lineDelimiter;
@@ -434,8 +449,16 @@ contact_app.uploadBox.importCSV = function (contacts) {
   contact_app.api.multipleTotal = contacts.length;
   contact_app.api.multipleUploads = 0;
   contact_app.api.multipleErrors = 0;
+
   $.each(contacts, function () {
-    contact_app.api.validate(this, contact_app.api.create);
+    var contact = this;
+    var serializedArray = [];
+    Object.keys(contact).forEach(function (key) {
+      if (key !== "id" || key !== "created_at" || key !== "updated_at") {
+        serializedArray.push({ name: key, value: contact[key] });
+      }
+    });
+    contact_app.api.validate(serializedArray, contact_app.api.create);
   });
 };
 

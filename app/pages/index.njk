@@ -153,7 +153,14 @@
             </div>
           </div>
           {{ formInput("Company", "company_name", "text", "o-input__field--editable")}}
-          {{ formInput("Phone", "phone", "tel", "o-input__field--editable")}}
+          <div class="o-layout">
+            <div class="o-layout__item  u-1/1  u-1/2@mobile">
+              {{ formInput("Phone", "phone", "tel", "o-input__field--editable")}}
+            </div>
+            <div class="o-layout__item  u-1/1  u-1/2@mobile">
+              {{ formInput("Work Phone", "work_phone", "tel", "o-input__field--editable")}}
+            </div>
+          </div>
           {{ formInput("Email", "email", "email", "o-input__field--editable")}}
           {{ formInput("Website", "url", "text", "o-input__field--editable")}}
           {{ formInput("Address", "address", "text", "o-input__field--editable")}}
