@@ -53,7 +53,7 @@
             <div class="c-menu__reset  c-menu__reset--up  o-icon  o-icon--chevron-down  js-reset-menu"><svg class="o-icon__svg"><use xlink:href="#o-icon--chevron-down"></use></svg></div>
             <div class="o-input  o-input--has-icon  o-input--search">
               <div class="o-icon  o-icon--search  o-icon--no-hover"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
-              <input type="text" class="o-input__field  js-contact-search" placeholder="Search">
+              <input type="text" class="o-input__field  js-contact-search" placeholder="Search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
       <form class="c-form  js-contact-form" method="post">
         <div class="c-form__header">
           <h3 class="c-modal__inner__header">View Contact</h3>
-          <input data-form-field="id" type="hidden" class="js-current-contact">
+          <input name="id" data-form-field="id" type="hidden" class="js-current-contact">
           <div class="o-button-group  o-button-group--dynamic    u-text-align--center">
             <button type="button" class="o-button  o-button--update  js-contact-edit">
               <div class="o-icon  o-icon--edit"><svg class="o-icon__svg"><use xlink:href="#o-icon--edit"></use></svg></div>
@@ -102,55 +102,55 @@
           <div class="o-layout">
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
               
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">First Name *</label>
-      <div class="o-input__field" data-form-field="first_name" contenteditable="false" placeholder="First Name"></div>
+      <input type="text" class="o-input__field" data-form-field="first_name" name="first_name" readonly="true" placeholder="First Name" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
             </div>
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
               
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">Last Name</label>
-      <div class="o-input__field" data-form-field="last_name" contenteditable="false" placeholder="Last Name"></div>
+      <input type="text" class="o-input__field" data-form-field="last_name" name="last_name" readonly="true" placeholder="Last Name" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
             </div>
           </div>
           
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">Company</label>
-      <div class="o-input__field" data-form-field="company_name" contenteditable="false" placeholder="Company"></div>
+      <input type="text" class="o-input__field" data-form-field="company_name" name="company_name" readonly="true" placeholder="Company" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
           
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">Phone</label>
-      <div class="o-input__field" data-form-field="phone" contenteditable="false" placeholder="Phone"></div>
+      <input type="tel" class="o-input__field" data-form-field="phone" name="phone" readonly="true" placeholder="Phone" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
           
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">Email</label>
-      <div class="o-input__field" data-form-field="email" contenteditable="false" placeholder="Email"></div>
+      <input type="email" class="o-input__field" data-form-field="email" name="email" readonly="true" placeholder="Email" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
           
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">Website</label>
-      <div class="o-input__field" data-form-field="url" contenteditable="false" placeholder="Website"></div>
+      <input type="text" class="o-input__field" data-form-field="url" name="url" readonly="true" placeholder="Website" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
           
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">Address</label>
-      <div class="o-input__field" data-form-field="address" contenteditable="false" placeholder="Address"></div>
+      <input type="text" class="o-input__field" data-form-field="address" name="address" readonly="true" placeholder="Address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
           
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">City</label>
-      <div class="o-input__field" data-form-field="city" contenteditable="false" placeholder="City"></div>
+      <input type="text" class="o-input__field" data-form-field="city" name="city" readonly="true" placeholder="City" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
           <div class="o-layout">
@@ -165,9 +165,9 @@
             </div>
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
               
-    <div class="o-input  o-input--text  o-input__field--contenteditable">
+    <div class="o-input  o-input--text  o-input__field--editable">
       <label class="o-input__label">Zip</label>
-      <div class="o-input__field" data-form-field="zip" contenteditable="false" placeholder="Zip"></div>
+      <input type="integer" class="o-input__field" data-form-field="zip" name="zip" readonly="true" placeholder="Zip" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   
             </div>

@@ -37,14 +37,7 @@
     width: calc(100% - 2rem);
   }
 
-  &[contenteditable]:empty:before {
-    content: attr(placeholder);
-    display: block;
-    font-style: italic;
-    color: $color_gray;
-  }
-
-  &[contenteditable="false"], &[disabled] {
+  &[readonly="true"], &[disabled] {
     border-color: $color_gray_lightest;
     border-style: dashed;
   }

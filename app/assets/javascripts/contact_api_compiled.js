@@ -203,25 +203,25 @@ contact_app.api.validate = function (formData, callback) {
   var errorMessage;
 
   Object.keys(formData).forEach(function (key) {
-    if (formData[key] != null && formData[key].length > 0) {
-      formData[key] = formData[key].trim();
+    if (formData[key].value != null && formData[key].value.length > 0) {
+      formData[key].value = formData[key].value.trim();
     }
-    switch (key) {
+    switch (formData[key].name) {
       case "url":
-        if (formData[key] != null && formData[key].length > 0 && !formData[key].startsWith("http")) {
-          formData[key] = "http://" + formData[key];
+        if (formData[key].value != null && formData[key].value.length > 0 && !formData[key].value.startsWith("http")) {
+          formData[key].value = "http://" + formData[key].value;
         }
         break;
       case "first_name":
-        if (formData[key] != null && formData[key].length <= 0) {
+        if (formData[key].value != null && formData[key].value.length <= 0) {
           dataValid = false;
         }
         errorMessage = "You have to include a first name.";
         break;
       case "email":
-        if (formData[key] != null && formData[key].length > 0) {
+        if (formData[key].value != null && formData[key].value.length > 0) {
           var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-          if (!emailRegex.test(formData[key])) {
+          if (!emailRegex.test(formData[key].value)) {
             dataValid = false;
             errorMessage = "Email appears to be invalid.";
           }
@@ -322,26 +322,24 @@ contact_app.api.manageFormState = function (context) {
       $(".js-contact-form .c-modal__inner__header").text("View Contact");
       break;
     case "editing":
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", true).prop("disabled", false);
+      $(".js-contact-form").find(".o-input__field").attr("readonly", false).prop("disabled", false);
       $(".o-button-group--dynamic").addClass("alt-showing");
       break;
     case "new-entry":
       $(".c-modal").addClass("new-entry");
       $(".js-contact-form .c-modal__inner__header").text("New Contact");
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", true).prop("disabled", false);
+      $(".js-contact-form").find(".o-input__field").attr("readonly", false).prop("disabled", false);
       break;
     case "reset":
       contact_app.api.activeContact = false;
-      $(".js-contact-form").find(".o-input--text .o-input__field").html("");
-      $(".js-contact-form").find(".o-input--select .o-input__field").val("");
+      $(".js-contact-form").find(".o-input__field").val("").attr("readonly", true).prop("disabled", true);
       $(".c-form__body").scrollTop(0);
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       $(".c-modal").removeClass("is-active new-entry");
       $(".c-upload-box").find("input").val("");
       break;
     case "lock-down":
-      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
+      $(".js-contact-form").find(".o-input__field").attr("readonly", true).prop("disabled", true);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       break;
   }
@@ -353,16 +351,7 @@ contact_app.api.renderContactForm = function (contactID) {
   var contact = contact_app.api.searchObject(contactID, contact_app.api.contacts);
   contact_app.api.activeContact = contactID;
   Object.keys(contact).forEach(function (key) {
-    switch (key) {
-      case "id":
-        $(".js-contact-form").find("input[data-form-field='id']").val(contact[key]);
-        break;
-      case "state":
-        $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").val(contact[key]);
-        break;
-      default:
-        $(".js-contact-form").find(".o-input__field[data-form-field='" + key + "']").html(contact[key]);
-    }
+    $(".js-contact-form").find("*[data-form-field='" + key + "']").val(contact[key]);
   });
 };
 
@@ -489,12 +478,7 @@ $(function () {
 
   // save a contact to either create or update
   $(".js-contact-save").on("click.save", function () {
-    var formData = { state: $(".o-input__field[data-form-field='state']").val() };
-
-    $(".js-contact-form").find(".o-input__field--contenteditable .o-input__field").each(function () {
-      formData[$(this).data("form-field")] = $(this).text().trim();
-    });
-
+    var formData = $(".js-contact-form").serializeArray();
     if ($(this).closest(".c-modal.new-entry").length > 0) {
       contact_app.api.validate(formData, contact_app.api.create);
     } else {

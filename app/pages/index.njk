@@ -2,10 +2,10 @@
 
 {% block content %}
 
-  {% macro formInput(label, field, customClasses) %}
+  {% macro formInput(label, field, type, customClasses) %}
     <div class="o-input  o-input--text  {{customClasses}}">
       <label class="o-input__label">{{label}}{% if field == "first_name" %} *{% endif %}</label>
-      <div class="o-input__field" data-form-field="{{field}}" contenteditable="false" placeholder="{{label}}"></div>
+      <input type="{{type}}" class="o-input__field" data-form-field="{{field}}" name="{{field}}" readonly="true" placeholder="{{label}}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   {% endmacro %}
 
@@ -98,7 +98,7 @@
             <div class="c-menu__reset  c-menu__reset--up  o-icon  o-icon--chevron-down  js-reset-menu"><svg class="o-icon__svg"><use xlink:href="#o-icon--chevron-down"></use></svg></div>
             <div class="o-input  o-input--has-icon  o-input--search">
               <div class="o-icon  o-icon--search  o-icon--no-hover"><svg class="o-icon__svg"><use xlink:href="#o-icon--search"></use></svg></div>
-              <input type="text" class="o-input__field  js-contact-search" placeholder="Search">
+              <input type="text" class="o-input__field  js-contact-search" placeholder="Search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@
       <form class="c-form  js-contact-form" method="post">
         <div class="c-form__header">
           <h3 class="c-modal__inner__header">View Contact</h3>
-          <input data-form-field="id" type="hidden" class="js-current-contact">
+          <input name="id" data-form-field="id" type="hidden" class="js-current-contact">
           <div class="o-button-group  o-button-group--dynamic    u-text-align--center">
             <button type="button" class="o-button  o-button--update  js-contact-edit">
               <div class="o-icon  o-icon--edit"><svg class="o-icon__svg"><use xlink:href="#o-icon--edit"></use></svg></div>
@@ -146,18 +146,18 @@
         <div class="c-form__body">
           <div class="o-layout">
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
-              {{ formInput("First Name", "first_name", "o-input__field--contenteditable")}}
+              {{ formInput("First Name", "first_name", "text", "o-input__field--editable")}}
             </div>
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
-              {{ formInput("Last Name", "last_name", "o-input__field--contenteditable")}}
+              {{ formInput("Last Name", "last_name", "text", "o-input__field--editable")}}
             </div>
           </div>
-          {{ formInput("Company", "company_name", "o-input__field--contenteditable")}}
-          {{ formInput("Phone", "phone", "o-input__field--contenteditable")}}
-          {{ formInput("Email", "email", "o-input__field--contenteditable")}}
-          {{ formInput("Website", "url", "o-input__field--contenteditable")}}
-          {{ formInput("Address", "address", "o-input__field--contenteditable")}}
-          {{ formInput("City", "city", "o-input__field--contenteditable")}}
+          {{ formInput("Company", "company_name", "text", "o-input__field--editable")}}
+          {{ formInput("Phone", "phone", "tel", "o-input__field--editable")}}
+          {{ formInput("Email", "email", "email", "o-input__field--editable")}}
+          {{ formInput("Website", "url", "text", "o-input__field--editable")}}
+          {{ formInput("Address", "address", "text", "o-input__field--editable")}}
+          {{ formInput("City", "city", "text", "o-input__field--editable")}}
           <div class="o-layout">
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
               <div class="o-input  o-input--select">
@@ -171,7 +171,7 @@
               </div>
             </div>
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
-              {{ formInput("Zip", "zip", "o-input__field--contenteditable")}}
+              {{ formInput("Zip", "zip", "integer", "o-input__field--editable")}}
             </div>
           </div>
         </div>

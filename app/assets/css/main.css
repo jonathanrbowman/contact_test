@@ -1504,12 +1504,7 @@ table {
     border-color: #0984e3; }
   .o-input--has-icon .o-input__field {
     width: calc(100% - 2rem); }
-  .o-input__field[contenteditable]:empty:before {
-    content: attr(placeholder);
-    display: block;
-    font-style: italic;
-    color: #aaaaaa; }
-  .o-input__field[contenteditable="false"], .o-input__field[disabled] {
+  .o-input__field[readonly="true"], .o-input__field[disabled] {
     border-color: #f7f7f7;
     border-style: dashed; }
 
