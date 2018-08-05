@@ -3,11 +3,11 @@ var nunjucksRender = require('gulp-nunjucks-render');
 
 gulp.task('nunjucks', function() {
   // Gets .html and .njk files in pages
-  return gulp.src('app/pages/**/*.+(html|njk)')
+  return gulp.src('pages/**/*.+(html|njk)')
   // Renders template with nunjucks
   .pipe(nunjucksRender({
-      path: ['app/templates']
+      path: ['templates']
     }))
   // output files in app folder
-  .pipe(gulp.dest('app'))
+  .pipe(gulp.dest('./'))
 });
