@@ -31,5 +31,3 @@ Data validation appears to be:
 -   Zip code appears to not allow null values in the database and defaults to 0
 
 Also, You can use escape to clear modals, search, and reset the menu state!
-
-If you find any bugs, please report them to me so I can fix them! Feel free to use this for any purposes, or contribute as you want by creating pull requests.
