@@ -1781,8 +1781,6 @@ table {
   margin: auto;
   padding: .5rem;
   box-shadow: 0 2px 8px 1px #000000;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
   outline: 15px solid rgba(119, 119, 119, 0.75); }
   @media (min-width: 46.25em) {
     .c-modal__inner {
@@ -1859,7 +1857,7 @@ table {
   padding-bottom: 1.5rem; }
 
 .c-form__body {
-  max-height: calc(100% - 118px);
+  max-height: calc(72vh - 110px);
   overflow-y: scroll; }
 
 .c-menu {

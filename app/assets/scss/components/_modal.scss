@@ -33,8 +33,6 @@
   margin: auto;
   padding: .5rem;
   box-shadow: 0 2px 8px 1px $color_black;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
   outline: 15px solid rgba($color_gray_dark, .75);
 
   @include mq($from: 'tablet') {
