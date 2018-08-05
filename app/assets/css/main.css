@@ -1466,6 +1466,9 @@ table {
   font-size: 1.5rem;
   margin-bottom: .5rem; }
 
+.o-heading--footer {
+  margin: 2rem 0; }
+
 .o-input {
   width: 100%;
   font-size: 0;
@@ -1673,8 +1676,7 @@ table {
 
 .c-dynamic-table {
   padding-top: 188px;
-  max-width: 800px;
-  padding-bottom: 80px; }
+  max-width: 800px; }
 
 .c-dynamic-table__body__row {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
