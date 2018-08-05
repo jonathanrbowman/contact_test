@@ -5,16 +5,16 @@ The goal of this contact manager is to provide a simple, clean interface to perf
 #### Feature List ####
 
 Need to have:
-- View, add, edit, and delete records
-- Data validation
-- Feedback UI
-- Welcome screen
-- Sorting
+- View, add, edit, and delete records (done)
+- Data validation (done)
+- Feedback UI (done)
+- Welcome screen (done)
+- Sorting (done)
 
 Nice to have:
-- Search
-- CSV data management
-- Single page/AJAX functionality
+- Search (done)
+- CSV data management (done)
+- Single page/AJAX functionality (done)
 
 Future Plans:
 - Bulk operations for deletion and specific field updates
