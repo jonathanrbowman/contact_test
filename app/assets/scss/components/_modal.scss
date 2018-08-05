@@ -22,25 +22,24 @@
   @include transition-curve();
   width: 90%;
   max-width: 640px;
-  max-height: calc(90% - 15vh);
   background-color: $color_white;
   position: absolute;
-  margin: 0 auto;
-  transform: translateY(10%);
-  top: 15vh;
-  left: 0;
-  right: 0;
-  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
   padding: .5rem;
   box-shadow: 0 2px 8px 1px $color_black;
+  -webkit-overflow-scrolling: touch;
   outline: 15px solid rgba($color_gray_dark, .75);
 
   @include mq($from: 'tablet') {
     padding: 1.5rem;
+    max-height: 90%;
+    overflow-y: auto;
   }
 
   .c-modal.is-active & {
-    transform: translateY(0);
+    transform: translate(-50%, -50%);
   }
 
   .o-icon--close {
@@ -61,6 +60,7 @@
 }
 
 .c-modal__inner__header {
-  margin-bottom: 1rem;
+  position: relative;
   text-align: center;
+  top: .5rem;
 }
