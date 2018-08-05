@@ -464,8 +464,13 @@ contact_app.uploadBox.importCSV = function (contacts) {
 
 // init by loading the contacts into memory, and saying hello!
 $(window).on("load", function (event) {
+  if (typeof Cookies.get('visited_before') == 'undefined') {
+    contact_app.modal.open("welcome");
+    Cookies.set('visited_before', "true");
+  } else {
+    contact_app.flashMessage.show("Welcome back!", "success");
+  }
   contact_app.api.list();
-  contact_app.flashMessage.show("Welcome!", "success");
 });
 
 // Start of all bound events
