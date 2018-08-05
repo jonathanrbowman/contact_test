@@ -71,32 +71,3 @@
 .o-input--search {
   max-width: 400px;
 }
-
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: red !important;
-    opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: red !important;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: red !important;
-}
-
-
-::placeholder {
-    color: $color_text;
-    -webkit-text-fill-color: $color_text;
-    opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder {
-    color: $color_text;
-}
-
-::-ms-input-placeholder {
-    color: $color_text;
-}

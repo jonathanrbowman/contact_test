@@ -10,6 +10,7 @@ Need to have:
 - Feedback UI (done)
 - Welcome screen (done)
 - Sorting (done)
+- Mobile Friendly (done)
 
 Nice to have:
 - Search (done)
