@@ -1,6 +1,6 @@
 first_name,last_name,company_name,address,city,state,zip,phone,work_phone,email,url,created_at,updated_at,
-Jonathan,Bowman,Self,,,,,,,jonathanrbowman@me.com,http://rebootcreate.com,,,
-Anna,Bowman,Bowman Industries,1234,Athens,GA,30677,12312323422,,,bowmanplace.com,,,
+Jonathan,Bowman,Self,,,,,,,,,,,
+,Bowman,,,,,,,,,,,,
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
