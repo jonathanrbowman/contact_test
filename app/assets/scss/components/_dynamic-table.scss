@@ -1,47 +1,8 @@
 .c-dynamic-table {
-  height: calc(100% - 158px);
-  position: relative;
-}
-
-.c-dynamic-table__headings {
-  font-size: 0;
-  border-bottom: 1px solid $color_gray;
-  padding: .5rem .75rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba($color_white, .9);
-  z-index: 2;
-}
-
-.c-dynamic-table__headings__heading {
-  width: 50%;
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 1rem;
-  text-align: left;
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0;
-  z-index: 2;
-}
-
-.c-dynamic-table__body {
-  padding-top: 194px;
+  padding-top: 188px;
   height: 100vh;
   max-height: 100%;
-  overflow-y: auto;
-  z-index: 1;
-  position: fixed;
-  -webkit-overflow-scrolling: touch;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  right: 0;
   max-width: 800px;
-  margin: auto;
 }
 
 .c-dynamic-table__body__row {

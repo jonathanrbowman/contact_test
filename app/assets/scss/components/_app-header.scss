@@ -1,6 +1,32 @@
 .c-app-header {
-  padding: .5rem;
+  padding-top: .5rem;
+  background-color: rgba($color_white, .9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.c-app-header__table-headers {
+  font-size: 0;
+  border-bottom: 1px solid $color_gray;
+  padding: .5rem .75rem;
+  width: 100%;
   background-color: rgba($color_white, .9);
   z-index: 2;
-  position: relative;
+}
+
+.c-app-header__table-headers__header {
+  width: 50%;
+  margin-bottom: 0;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
 }
