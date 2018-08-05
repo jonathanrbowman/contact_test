@@ -55,16 +55,13 @@ contact_app.api.list = function({event, page = 1, sort = contact_app.api.sort, d
   });
 };
 
-contact_app.api.create = function(form_data) {
+contact_app.api.create = function(formData) {
   $(".o-button").prop("disabled", true);
-
-// working here
-  var uploadsNeeded = form_data.length;
 
   $.ajax({
     url: contact_app.api.base_url + "contact",
     method: "POST",
-    data: form_data,
+    data: formData,
     beforeSend: function(request) {
       request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
     },
@@ -81,6 +78,7 @@ contact_app.api.create = function(form_data) {
       contact_app.flashMessage.show("Contact created!", "success");
     },
     error: function(data) {
+      console.log(data);
       contact_app.flashMessage.show("There was a problem creating your contact :/", "error");
     },
     complete: function() {
@@ -152,7 +150,7 @@ contact_app.api.validate = function(formData, callback) {
   for (var key in formData) {
     switch (key) {
       case "url":
-        if (!formData[key].startsWith("http")) {
+        if (formData[key].length > 0 && !formData[key].startsWith("http")) {
           formData[key] = "http://" + formData[key];
         }
         break;
