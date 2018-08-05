@@ -4,7 +4,7 @@
 
   {% macro formInput(label, field, customClasses) %}
     <div class="o-input  o-input--text  {{customClasses}}">
-      <label class="o-input__label">{{label}}</label>
+      <label class="o-input__label">{{label}}{% if field == "first_name" %} *{% endif %}</label>
       <div class="o-input__field" data-form-field="{{field}}" contenteditable="false" placeholder="{{label}}"></div>
     </div>
   {% endmacro %}
@@ -144,18 +144,18 @@
         <div class="c-form__body">
           <div class="o-layout">
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
-              {{ formInput("First Name *", "first_name")}}
+              {{ formInput("First Name", "first_name", "o-input__field--contenteditable")}}
             </div>
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
-              {{ formInput("Last Name", "last_name")}}
+              {{ formInput("Last Name", "last_name", "o-input__field--contenteditable")}}
             </div>
           </div>
-          {{ formInput("Company", "company_name")}}
-          {{ formInput("Phone", "phone")}}
-          {{ formInput("Email", "email")}}
-          {{ formInput("Website", "url")}}
-          {{ formInput("Address", "address")}}
-          {{ formInput("City", "city")}}
+          {{ formInput("Company", "company_name", "o-input__field--contenteditable")}}
+          {{ formInput("Phone", "phone", "o-input__field--contenteditable")}}
+          {{ formInput("Email", "email", "o-input__field--contenteditable")}}
+          {{ formInput("Website", "url", "o-input__field--contenteditable")}}
+          {{ formInput("Address", "address", "o-input__field--contenteditable")}}
+          {{ formInput("City", "city", "o-input__field--contenteditable")}}
           <div class="o-layout">
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
               <div class="o-input  o-input--select">
@@ -169,7 +169,7 @@
               </div>
             </div>
             <div class="o-layout__item  u-1/1  u-1/2@mobile">
-              {{ formInput("Zip", "zip")}}
+              {{ formInput("Zip", "zip", "o-input__field--contenteditable")}}
             </div>
           </div>
         </div>

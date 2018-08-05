@@ -89,51 +89,33 @@ contact_app.api.create = function(form_data) {
   });
 };
 
-contact_app.api.update = function() {
-  if (contact_app.api.activeContact) {
-    var form_data = $(".js-contact-form").serialize();
-    $(".js-contact-form").find(".o-input__field").each(function() {
-      if ($(this).closest(".o-input--select").length > 0) {
-        var form_field_value = $(this).val();
+contact_app.api.update = function(formData) {
+  $(".o-button").prop("disabled", true);
+  $.ajax({
+    url: contact_app.api.base_url + "contact/" + contact_app.api.activeContact,
+    method: "PUT",
+    data: formData,
+    beforeSend: function(request) {
+      request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
+    },
+    success: function(data) {
+      $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
+      $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
+      if (contact_app.api.searchResults.length > 0) {
+        contact_app.api.filter(contact_app.api.searchResults);
       } else {
-        var form_field_value = $(this).text();
+        contact_app.api.list(event);
       }
-      if ($(this).data("form-field") === "url") {
-        if (!$(this).text().startsWith("http")) {
-          form_field_value = "http://" + $(this).text();
-        }
-      }
-      form_data = form_data + "&" + $(this).data("form-field") + "=" + form_field_value;
-    });
 
-    $(".o-button").prop("disabled", true);
-
-    $.ajax({
-      url: contact_app.api.base_url + "contact/" + contact_app.api.activeContact,
-      method: "PUT",
-      data: form_data,
-      beforeSend: function(request) {
-        request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
-      },
-      success: function(data) {
-        $(".js-contact-form").find(".o-input__field").attr("contenteditable", false).prop("disabled", true);
-        $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
-        if (contact_app.api.searchResults.length > 0) {
-          contact_app.api.filter(contact_app.api.searchResults);
-        } else {
-          contact_app.api.list(event);
-        }
-
-        contact_app.flashMessage.show("Contact updated!", "success");
-      },
-      error: function(data) {
-        contact_app.flashMessage.show("There was a problem updating your contact :/", "error");
-      },
-      complete: function() {
-        $(".o-button").prop("disabled", false);
-      }
-    });
-  }
+      contact_app.flashMessage.show("Contact updated!", "success");
+    },
+    error: function(data) {
+      contact_app.flashMessage.show("There was a problem updating your contact :/", "error");
+    },
+    complete: function() {
+      $(".o-button").prop("disabled", false);
+    }
+  });
 };
 
 contact_app.api.destroy = function() {
@@ -163,16 +145,39 @@ contact_app.api.destroy = function() {
   }
 };
 
-contact_app.api.validate = function() {
-  var isValid = true;
+contact_app.api.validate = function(formData, callback) {
+  var dataValid = true;
+  var errorMessage;
 
-  if ($(".o-input__field[data-form-field='first_name']").val().trim() == "") {
-    isValid = false;
+  for (var key in formData) {
+    switch (key) {
+      case "url":
+        if (!formData[key].startsWith("http")) {
+          formData[key] = "http://" + formData[key];
+        }
+        break;
+      case "first_name":
+        if (formData[key].length <= 0) {
+          dataValid = false;
+        }
+        errorMessage = "You have to include a first name."
+        break;
+      case "email":
+        if (formData[key].length > 0) {
+          var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+          if (!emailRegex.test(formData[key])) {
+            dataValid = false;
+            errorMessage = "Email appears to be invalid.";
+          }
+        }
+        break;
+    }
   }
 
-  if (!isValid) {
-    contact_app.flashMessage.show("Please make sure you entered a first name!", "error");
-    return false;
+  if (dataValid) {
+    callback(formData);
+  } else {
+    contact_app.flashMessage.show(errorMessage, "error");
   }
 };
 
@@ -374,7 +379,7 @@ $(function() {
     }
   });
 
-  $("body").on("click.closeModal", function(event) {
+  $("body").on("mousedown.closeModal", function(event) {
     if ($(event.target).hasClass("c-modal") || $(event.target).closest(".js-close-modal").length > 0) {
       event.preventDefault();
       event.stopPropagation();
@@ -399,16 +404,16 @@ $(function() {
   });
 
   $(".js-contact-save").on("click.save", function() {
-    if ($(this).closest(".c-modal.new-entry").length > 0) {
-      var form_data;
-      $(".js-contact-form").find(".o-input__field").each(function() {
-        var form_field_value = $(this).text();
-        form_data = form_data + "&" + $(this).data("form-field") + "=" + form_field_value;
-      });
+    var formData = {state: $(".o-input__field[data-form-field='state']").val()};
 
-      contact_app.api.create(form_data);
+    $(".js-contact-form").find(".o-input__field--contenteditable .o-input__field").each(function() {
+      formData[$(this).data("form-field")] = $(this).text().trim();
+    });
+
+    if ($(this).closest(".c-modal.new-entry").length > 0) {
+      contact_app.api.validate(formData, contact_app.api.create);
     } else {
-      contact_app.api.update();
+      contact_app.api.validate(formData, contact_app.api.update);
     }
   });
 
