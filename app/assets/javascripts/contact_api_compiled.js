@@ -420,6 +420,8 @@ contact_app.api.exportCSV = function (contactObject) {
   contact_app.flashMessage.show("Contacts have been exported!", "success");
 };
 
+// @function parseCSVFile - given a file, check if it's a CSV and then encode it
+// uploadedFile {object} - a file object
 contact_app.api.parseCSVFile = function (uploadedFile) {
   var csvTest = /(\.|\/)(csv)$/i;
 
@@ -445,6 +447,8 @@ contact_app.api.parseCSVFile = function (uploadedFile) {
   }
 };
 
+// @function importCSV - take a contact object from a parsed CSV and begin creating records
+// contacts {object}
 contact_app.uploadBox.importCSV = function (contacts) {
   contact_app.api.multipleTotal = contacts.length;
   contact_app.api.multipleUploads = 0;
@@ -587,6 +591,7 @@ $(function () {
     contact_app.modal.close();
   });
 
+  // reset various items when pressing the escape key
   $(document).on("keyup", function (event) {
     if (event.which === 27) {
       $(".js-contact-search").blur().val("");
