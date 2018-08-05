@@ -10,11 +10,10 @@ Need to have:
 - Feedback UI
 - Welcome screen
 
-Need to have:
+Nice to have:
 - Search
 - CSV data management
 - Single page/AJAX functionality
-
 
 Future Plans:
 - Bulk operations for deletion and specific field updates
