@@ -322,24 +322,28 @@ contact_app.api.manageFormState = function (context) {
       $(".js-contact-form .c-modal__inner__header").text("View Contact");
       break;
     case "editing":
-      $(".js-contact-form").find(".o-input__field").attr("readonly", false).prop("disabled", false);
+      $(".js-contact-form").find(".o-input__field").prop("readonly", false);
+      $(".js-contact-form").find(".o-input--select .o-input__field").prop("disabled", false);
       $(".o-button-group--dynamic").addClass("alt-showing");
       break;
     case "new-entry":
       $(".c-modal").addClass("new-entry");
       $(".js-contact-form .c-modal__inner__header").text("New Contact");
-      $(".js-contact-form").find(".o-input__field").attr("readonly", false).prop("disabled", false);
+      $(".js-contact-form").find(".o-input__field").prop("readonly", false);
+      $(".js-contact-form").find(".o-input--select .o-input__field").prop("disabled", false);
       break;
     case "reset":
       contact_app.api.activeContact = false;
-      $(".js-contact-form").find(".o-input__field").val("").attr("readonly", true).prop("disabled", true);
+      $(".js-contact-form").find(".o-input__field").val("").prop("readonly", true);
+      $(".js-contact-form").find(".o-input--select .o-input__field").val("").prop("disabled", true);
       $(".c-form__body").scrollTop(0);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       $(".c-modal").removeClass("is-active new-entry");
       $(".c-upload-box").find("input").val("");
       break;
     case "lock-down":
-      $(".js-contact-form").find(".o-input__field").attr("readonly", true).prop("disabled", true);
+      $(".js-contact-form").find(".o-input__field").prop("readonly", true);
+      $(".js-contact-form").find(".o-input--select .o-input__field").prop("disabled", true);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       break;
   }

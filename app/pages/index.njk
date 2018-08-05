@@ -5,7 +5,7 @@
   {% macro formInput(label, field, type, customClasses) %}
     <div class="o-input  o-input--text  {{customClasses}}">
       <label class="o-input__label">{{label}}{% if field == "first_name" %} *{% endif %}</label>
-      <input type="{{type}}" class="o-input__field" data-form-field="{{field}}" name="{{field}}" readonly="true" placeholder="{{label}}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <input type="{{type}}" class="o-input__field" data-form-field="{{field}}" name="{{field}}" readonly placeholder="{{label}}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   {% endmacro %}
 
@@ -123,7 +123,7 @@
       <form class="c-form  js-contact-form" method="post">
         <div class="c-form__header">
           <h3 class="c-modal__inner__header">View Contact</h3>
-          <input name="id" data-form-field="id" type="hidden" class="js-current-contact">
+          <input name="id" data-form-field="id" type="hidden" class="js-current-contact" readonly>
           <div class="o-button-group  o-button-group--dynamic    u-text-align--center">
             <button type="button" class="o-button  o-button--update  js-contact-edit">
               <div class="o-icon  o-icon--edit"><svg class="o-icon__svg"><use xlink:href="#o-icon--edit"></use></svg></div>
