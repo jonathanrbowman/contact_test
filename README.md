@@ -9,6 +9,7 @@ Need to have:
 - Data validation
 - Feedback UI
 - Welcome screen
+- Sorting
 
 Nice to have:
 - Search
