@@ -22,9 +22,6 @@ Future Plans:
 
 Data validation appears to be:
 -   First name is required
-
 -   Email is string@string.string format
-
 -   URL must start with http
-
 -   Zip code appears to not allow null values in the database and defaults to 0
