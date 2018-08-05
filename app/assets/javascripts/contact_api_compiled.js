@@ -18,6 +18,9 @@ contact_app.api.sort = "last_name";
 contact_app.api.order = false;
 contact_app.api.isScrolling = false;
 contact_app.api.activeContact = false;
+contact_app.api.multipleTotal = false;
+contact_app.api.multipleUploads = 0;
+contact_app.api.multipleErrors = 0;
 contact_app.api.rowTemplate = "\n  <div class=\"c-dynamic-table__body__row  js-contact-row\" data-row-id=\"___ID___\">\n    <h5 class=\"c-dynamic-table__body__row__item\">___FIRST_NAME___ ___LAST_NAME___</h5>\n    <h5 class=\"c-dynamic-table__body__row__item\">___COMPANY_NAME___</h5>\n  </div>\n";
 contact_app.api.rowTemplateReverse = "\n<div class=\"c-dynamic-table__body__row  js-contact-row\" data-row-id=\"___ID___\">\n  <h5 class=\"c-dynamic-table__body__row__item\">___LAST_NAME___, ___FIRST_NAME___</h5>\n  <h5 class=\"c-dynamic-table__body__row__item\">___COMPANY_NAME___</h5>\n</div>\n";
 
@@ -91,15 +94,46 @@ contact_app.api.create = function (formData) {
       request.setRequestHeader("X-Auth-Token", contact_app.api.auth_token);
     },
     success: function success(data) {
-      contact_app.api.manageFormState("reset");
-      contact_app.api.list();
-      contact_app.flashMessage.show("Contact created!", "success");
+      if (contact_app.api.multipleTotal) {
+        contact_app.api.multipleUploads++;
+      } else {
+        contact_app.api.manageFormState("reset");
+        contact_app.api.list();
+        contact_app.flashMessage.show("Contact created!", "success");
+      }
     },
     error: function error(data) {
-      console.log(data);
-      contact_app.flashMessage.show("There was a problem creating your contact :/", "error");
+      if (contact_app.api.multipleTotal) {
+        contact_app.api.multipleErrors++;
+      } else {
+        contact_app.flashMessage.show("There was a problem creating your contact :/", "error");
+      }
     },
     complete: function complete() {
+      if (contact_app.api.multipleTotal && contact_app.api.multipleUploads + contact_app.api.multipleErrors >= contact_app.api.multipleTotal) {
+        var successLanguage = contact_app.api.multipleUploads === 1 ? " contact was uploaded!" : " contacts were uploaded!";
+        var errorLanguage = contact_app.api.multipleErrors === 1 ? " contact had errors and could not be uploaded." : " contacts had errors and could not be uploaded.";
+        var message, style;
+
+        if (contact_app.api.multipleUploads && contact_app.api.multipleErrors) {
+          message = "Finished - " + contact_app.api.multipleUploads + successLanguage + "<br>" + contact_app.api.multipleErrors + errorLanguage;
+          style = "default";
+        } else if (contact_app.api.multipleUploads) {
+          message = "Finished - " + contact_app.api.multipleUploads + successLanguage;
+          style = "success";
+        } else {
+          message = contact_app.api.multipleErrors + errorLanguage;
+          style = "error";
+        }
+
+        contact_app.flashMessage.show(message, style);
+
+        contact_app.api.manageFormState("reset");
+        contact_app.api.multipleTotal = false;
+        contact_app.api.multipleUploads = 0;
+        contact_app.api.multipleErrors = 0;
+        contact_app.api.list();
+      }
       $(".o-button").prop("disabled", false);
     }
   });
@@ -404,6 +438,9 @@ contact_app.api.parseCSVFile = function (uploadedFile) {
 };
 
 contact_app.uploadBox.importCSV = function (contacts) {
+  contact_app.api.multipleTotal = contacts.length;
+  contact_app.api.multipleUploads = 0;
+  contact_app.api.multipleErrors = 0;
   $.each(contacts, function () {
     contact_app.api.validate(this, contact_app.api.create);
   });
@@ -467,7 +504,7 @@ $(function () {
 
   // confirm and destroy given contact
   $(".js-contact-destroy").on("click.destroy", function () {
-    if (confirm("Are you sure you want to remove this contact? " + $(".js-current-contact").val())) {
+    if (confirm("Are you sure you want to remove this contact?")) {
       contact_app.api.destroy($(".js-current-contact").val());
     }
   });
@@ -530,5 +567,15 @@ $(function () {
   $(".js-sort").on("click", function (event) {
     contact_app.api.list();
     contact_app.modal.close();
+  });
+
+  $(document).on("keyup", function (event) {
+    if (event.which === 27) {
+      $(".js-contact-search").blur().val("");
+      $(".c-menu").removeClass("showing-more showing-search");
+      contact_app.api.searchResults = [];
+      contact_app.api.manageFormState("reset");
+      contact_app.api.render(contact_app.api.contacts);
+    }
   });
 });

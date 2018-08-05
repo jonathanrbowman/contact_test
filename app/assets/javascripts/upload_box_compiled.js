@@ -17,7 +17,6 @@ $(function () {
   });
 
   $(".js-upload-csv").on("change", function (event) {
-    console.log("should be parsing");
     contact_app.api.parseCSVFile(this.files);
   });
 });
