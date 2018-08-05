@@ -1506,7 +1506,8 @@ table {
     width: calc(100% - 2rem); }
   .o-input__field[readonly="true"], .o-input__field[disabled] {
     border-color: #f7f7f7;
-    border-style: dashed; }
+    border-style: dashed;
+    color: #2d3436; }
 
 .o-input--false-placeholder {
   position: fixed;

@@ -40,6 +40,7 @@
   &[readonly="true"], &[disabled] {
     border-color: $color_gray_lightest;
     border-style: dashed;
+    color: $color_text;
   }
 }
 
