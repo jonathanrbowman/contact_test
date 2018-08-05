@@ -22,24 +22,27 @@
   @include transition-curve();
   width: 90%;
   max-width: 640px;
+  max-height: calc(90% - 15vh);
   background-color: $color_white;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -45%);
+  margin: 0 auto;
+  transform: translateY(10%);
+  top: 15vh;
+  left: 0;
+  right: 0;
+  margin: auto;
   padding: .5rem;
   box-shadow: 0 2px 8px 1px $color_black;
   -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
   outline: 15px solid rgba($color_gray_dark, .75);
 
   @include mq($from: 'tablet') {
     padding: 1.5rem;
-    max-height: 90%;
-    overflow-y: auto;
   }
 
   .c-modal.is-active & {
-    transform: translate(-50%, -50%);
+    transform: translateY(0);
   }
 
   .o-icon--close {
