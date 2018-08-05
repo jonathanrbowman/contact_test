@@ -11,6 +11,7 @@ contact_app.api.sort = "last_name";
 contact_app.api.order = false;
 contact_app.api.isScrolling = false;
 contact_app.api.activeContact = false;
+// templates used to generate contact rows
 contact_app.api.rowTemplate = `
   <div class="c-dynamic-table__body__row  js-contact-row" data-row-id="___ID___">
     <h5 class="c-dynamic-table__body__row__item">___FIRST_NAME___ ___LAST_NAME___</h5>
@@ -24,7 +25,12 @@ contact_app.api.rowTemplateReverse = `
 </div>
 `;
 
-// when you only have the quantity of entries we're dealing with, I'd rather just load them into memory instead of making more network requests
+// @function list - reaches out to grab a contact list from the server
+// event {object}
+// page {integer}
+// sort {string}
+// desc {boolean} -
+// limit {integer}
 contact_app.api.list = function({event, page = 1, sort = contact_app.api.sort, desc = contact_app.api.order, limit = 9999}) {
   contact_app.api.contacts = [];
   contact_app.api.searchResults = [];
@@ -212,7 +218,7 @@ contact_app.api.search = function(value = false) {
   contact_app.api.searchResults = [];
 
   if (value) {
-    value = value.toString().toUpperCase();
+    value = value.toString().toUpperCase().trim();
     $.each(contact_app.api.searchKeys, function() {
       if (!["id", "created_at", "updated_at"].includes(this)) {
         contact_app.api.searchResults.push(contact_app.api.contacts.filter(

@@ -15,10 +15,16 @@ contact_app.api.sort = "last_name";
 contact_app.api.order = false;
 contact_app.api.isScrolling = false;
 contact_app.api.activeContact = false;
+// templates used to generate contact rows
 contact_app.api.rowTemplate = "\n  <div class=\"c-dynamic-table__body__row  js-contact-row\" data-row-id=\"___ID___\">\n    <h5 class=\"c-dynamic-table__body__row__item\">___FIRST_NAME___ ___LAST_NAME___</h5>\n    <h5 class=\"c-dynamic-table__body__row__item\">___COMPANY_NAME___</h5>\n  </div>\n";
 contact_app.api.rowTemplateReverse = "\n<div class=\"c-dynamic-table__body__row  js-contact-row\" data-row-id=\"___ID___\">\n  <h5 class=\"c-dynamic-table__body__row__item\">___LAST_NAME___, ___FIRST_NAME___</h5>\n  <h5 class=\"c-dynamic-table__body__row__item\">___COMPANY_NAME___</h5>\n</div>\n";
 
-// when you only have the quantity of entries we're dealing with, I'd rather just load them into memory instead of making more network requests
+// @function list - reaches out to grab a contact list from the server
+// event {object}
+// page {integer}
+// sort {string}
+// desc {boolean} -
+// limit {integer}
 contact_app.api.list = function (_ref) {
   var event = _ref.event,
       _ref$page = _ref.page,
@@ -220,7 +226,7 @@ contact_app.api.search = function () {
   if (value) {
     var _ref2;
 
-    value = value.toString().toUpperCase();
+    value = value.toString().toUpperCase().trim();
     $.each(contact_app.api.searchKeys, function () {
       var _this = this;
 
