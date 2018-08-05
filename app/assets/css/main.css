@@ -1477,6 +1477,14 @@ table {
   display: inline-block; }
   .o-input .o-icon {
     vertical-align: middle; }
+  .o-input ::placeholder {
+    color: #aaaaaa;
+    -webkit-text-fill-color: #aaaaaa;
+    opacity: 1; }
+  .o-input :-ms-input-placeholder {
+    color: #aaaaaa; }
+  .o-input ::-ms-input-placeholder {
+    color: #aaaaaa; }
 
 .o-input__label {
   font-size: .85rem;
@@ -1519,6 +1527,32 @@ table {
 
 .o-input--search {
   max-width: 400px; }
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red !important;
+  opacity: 1;
+  /* Firefox */ }
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: red !important; }
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: red !important; }
+
+::placeholder {
+  color: #2d3436;
+  -webkit-text-fill-color: #2d3436;
+  opacity: 1;
+  /* Firefox */ }
+
+:-ms-input-placeholder {
+  color: #2d3436; }
+
+::-ms-input-placeholder {
+  color: #2d3436; }
 
 .o-icon {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
