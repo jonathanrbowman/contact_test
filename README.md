@@ -10,12 +10,14 @@ Need to have:
 - Feedback UI (done)
 - Welcome screen (done)
 - Sorting (done)
-- Mobile Friendly (done)
+- Mobile friendly (done)
+- Works with Safari, Chrome, and Firefox (done)
 
 Nice to have:
 - Search (done)
 - CSV data management (done)
 - Single page/AJAX functionality (done)
+- Works with Edge (done)
 
 Future Plans:
 - Bulk operations for deletion and specific field updates
