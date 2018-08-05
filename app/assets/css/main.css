@@ -1640,10 +1640,41 @@ table {
   .new-entry .o-button-group--dynamic .o-button {
     transform: translateY(-40px); }
 
+.o-link {
+  -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* easeOutCirc */
+  text-decoration: none;
+  color: #0984e3;
+  position: relative; }
+  .o-link:after {
+    -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -o-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    /* easeOutCirc */
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 2px;
+    background-color: #0984e3; }
+  .o-link:hover {
+    color: #2ecc71; }
+    .o-link:hover:after {
+      width: 100%;
+      background-color: #2ecc71; }
+
 .c-dynamic-table {
   padding-top: 188px;
   max-width: 800px;
-  padding-bottom: 50px; }
+  padding-bottom: 80px; }
 
 .c-dynamic-table__body__row {
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);

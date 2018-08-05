@@ -1,0 +1,29 @@
+.o-link {
+  @include transition-curve();
+  text-decoration: none;
+  color: $color_blue;
+  position: relative;
+
+  &:after {
+    @include transition-curve();
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 2px;
+    background-color: $color_blue;
+  }
+
+  &:hover {
+    color: $color_green;
+
+    &:after {
+      width: 100%;
+      background-color: $color_green;
+    }
+  }
+}
