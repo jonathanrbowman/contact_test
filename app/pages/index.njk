@@ -5,7 +5,7 @@
   {% macro formInput(label, field, type, customClasses) %}
     <div class="o-input  o-input--text  {{customClasses}}">
       <label class="o-input__label">{{label}}{% if field == "first_name" %} *{% endif %}</label>
-      <input type="{{type}}" class="o-input__field" data-form-field="{{field}}" name="{{field}}" readonly placeholder="{{label}}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <input type="{{type}}" class="o-input__field" data-form-field="{{field}}" name="{{field}}" readonly disabled placeholder="{{label}}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   {% endmacro %}
 

@@ -37,11 +37,13 @@
     width: calc(100% - 2rem);
   }
 
-  &[readonly], &[disabled] {
+  &[readonly], &[readonly="true"], &[disabled] {
     border-color: $color_gray_lightest;
     border-style: dashed;
     color: $color_text;
     opacity: 1;
+    user-select: none;
+    -webkit-text-fill-color: $color_text;
   }
 }
 

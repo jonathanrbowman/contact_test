@@ -157,7 +157,7 @@ contact_app.api.update = function(formData) {
     success: function(data) {
       contact_app.api.manageFormState("lock-down");
       contact_app.api.list();
-      contact_app.flashMessage.show("Contact updated!", "success");
+      contact_app.flashMessage.show("Contact saved!", "success");
     },
     error: function(data) {
       contact_app.flashMessage.show("There was a problem updating your contact :/", "error");
@@ -328,19 +328,19 @@ contact_app.api.manageFormState = function(context) {
       $(".js-contact-form .c-modal__inner__header").text("View Contact");
       break;
     case "editing":
-      $(".js-contact-form").find(".o-input__field").prop("readonly", false);
+      $(".js-contact-form").find(".o-input__field").prop("readonly", false).prop("disabled", false);
       $(".js-contact-form").find(".o-input--select .o-input__field").prop("disabled", false);
       $(".o-button-group--dynamic").addClass("alt-showing");
       break;
     case "new-entry":
       $(".c-modal").addClass("new-entry");
       $(".js-contact-form .c-modal__inner__header").text("New Contact");
-      $(".js-contact-form").find(".o-input__field").prop("readonly", false);
+      $(".js-contact-form").find(".o-input__field").prop("readonly", false).prop("disabled", false);
       $(".js-contact-form").find(".o-input--select .o-input__field").prop("disabled", false);
       break;
     case "reset":
       contact_app.api.activeContact = false;
-      $(".js-contact-form").find(".o-input__field").val("").prop("readonly", true);
+      $(".js-contact-form").find(".o-input__field").val("").prop("readonly", true).prop("disabled", true);
       $(".js-contact-form").find(".o-input--select .o-input__field").val("").prop("disabled", true);
       $(".c-form__body").scrollTop(0);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
@@ -348,7 +348,7 @@ contact_app.api.manageFormState = function(context) {
       $(".c-upload-box").find("input").val("");
       break;
     case "lock-down":
-      $(".js-contact-form").find(".o-input__field").prop("readonly", true);
+      $(".js-contact-form").find(".o-input__field").prop("readonly", true).prop("disabled", true);
       $(".js-contact-form").find(".o-input--select .o-input__field").prop("disabled", true);
       $(".js-contact-form").find(".o-button-group--dynamic").removeClass("alt-showing");
       break;
@@ -502,7 +502,7 @@ $(function() {
     } else {
       contact_app.api.manageFormState("lock-down");
       contact_app.api.renderContactForm(contact_app.api.activeContact);
-      contact_app.flashMessage.show("Changes discarded!");
+      contact_app.flashMessage.show("Changes discarded");
     }
   });
 

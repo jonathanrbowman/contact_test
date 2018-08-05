@@ -28,11 +28,11 @@ contact_app.flashMessage.show = function (message) {
 
   setTimeout(function () {
     newMessage.addClass("is-leaving");
-  }, 5200);
+  }, 4000);
 
   setTimeout(function () {
     newMessage.remove();
-  }, 5500);
+  }, 4300);
 };
 
 // @function show - animate out and remove a message

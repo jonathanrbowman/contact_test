@@ -1504,11 +1504,13 @@ table {
     border-color: #0984e3; }
   .o-input--has-icon .o-input__field {
     width: calc(100% - 2rem); }
-  .o-input__field[readonly], .o-input__field[disabled] {
+  .o-input__field[readonly], .o-input__field[readonly="true"], .o-input__field[disabled] {
     border-color: #f7f7f7;
     border-style: dashed;
     color: #2d3436;
-    opacity: 1; }
+    opacity: 1;
+    user-select: none;
+    -webkit-text-fill-color: #2d3436; }
 
 .o-input--false-placeholder {
   position: fixed;
